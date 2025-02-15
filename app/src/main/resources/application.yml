@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: server
+  datasource:
+    url: jdbc:mysql://localhost/bakesoft
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+  logging:
+    level:
+      org.springframework.mail: DEBUG
