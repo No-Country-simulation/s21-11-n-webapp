@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS orders
+(
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT NOT NULL,
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+total_amount DECIMAL(10,2) NOT NULL,
+delivery_address VARCHAR(50) NOT NULL DEFAULT 'DIRECCION DE SUCURSAL 12345',
+status ENUM('pending_payment', 'paid', 'shipped', 'delivered', 'cancelled') NOT NULL DEFAULT 'pending_payment',
+FOREIGN KEY (user_id) REFERENCES users(id),
+)
