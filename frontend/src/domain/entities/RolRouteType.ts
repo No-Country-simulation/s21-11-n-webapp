@@ -1,0 +1,1 @@
+export type RolRouteType = 'user' | 'admin';

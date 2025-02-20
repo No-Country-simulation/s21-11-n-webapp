@@ -1,9 +1,10 @@
-
+import { CustomRoute } from '@/domain/entities/CustomRoute';
+import { PrivateRouteLists } from '@/domain/entities/PrivateRouteLists';
 import LandingPage from "@/infraestructure/ui/pages/landing.page";
 
-const PublicRoutes = [
+const PublicRoutes: CustomRoute[] = [
   {
-    path: "/",
+    path: '/',
     element: <LandingPage />
   },
   {
@@ -20,7 +21,7 @@ const PublicRoutes = [
   }
 ]
 
-const PrivateRoutes = {
+const PrivateRoutes: PrivateRouteLists = {
   user: [
     {
       path: '/history',
