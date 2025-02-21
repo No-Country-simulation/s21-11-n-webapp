@@ -1,52 +1,19 @@
-import { Layout } from '@/infraestructure/ui/components/Layout/Layout';
-import { PrivateRoutes, PublicRoutes } from '@/routing/routes'
-import { BrowserRouter, Route, Routes } from 'react-router';
+import ThemeProvider from "@/infraestructure/ui/components/Layout/ThemeProvider";
+import { routeList } from "@/routing/routes";
+import { createBrowserRouter, RouterProvider } from "react-router";
 
-// const generateRoutes = () => {
-//   const { admin, user } = PrivateRoutes
-//   return [...PublicRoutes, ...user, ...admin]
-// }
+const generateRoutes = () => {
+  return Object.values(routeList).map(list => list);
+};
 
-// const router = createBrowserRouter(generateRoutes());
-
-// const AppRouter = () => {
-//   return <RouterProvider router={router} />;
-// };
-
-const publicRoutes = PublicRoutes;
-const {
-  admin: adminRoutes,
-  user: userRoutes,
-} = PrivateRoutes;
+const router = createBrowserRouter(generateRoutes());
 
 const AppRouter = () => {
-
-
-  return <BrowserRouter>
-    <Routes>
-
-      <Route element={<Layout />}>
-
-        {
-          publicRoutes.map(({ path, element }) => {
-            return <Route path={path} element={element} />
-          })
-        }
-        {
-          adminRoutes.map(({ path, element }) => {
-            return <Route path={path} element={element} />
-          })
-        }
-        {
-          userRoutes.map(({ path, element }) => {
-            return <Route path={path} element={element} />
-          })
-        }
-
-      </Route>
-
-    </Routes>
-  </BrowserRouter>
-}
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
+};
 
 export default AppRouter;

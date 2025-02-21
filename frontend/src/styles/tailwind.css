@@ -1,3 +1,19 @@
-@import "tailwindcss";
-@import 'primereact/resources/themes/soho-light/theme.css';
-@import 'primereact/resources/primereact.min.css';
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" (base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+body {
+  @apply bg-zinc-100 dark:bg-zinc-900;
+}
+
+@theme {
+  /* custom theme for tailwind example */
+  --color-beige: oklch(0.956 0.015 69.38);
+
+  --font-primary: Cookie, "sans_serif";
+}
