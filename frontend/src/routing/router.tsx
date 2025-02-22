@@ -1,9 +1,9 @@
-import ThemeProvider from "@/infraestructure/ui/components/Layout/ThemeProvider";
+import ThemeProvider from "@/infraestructure/ui/components/layout/ThemeProvider";
 import { routeList } from "@/routing/routes";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 const generateRoutes = () => {
-  return Object.values(routeList).map(list => list);
+  return Object.values(routeList).map((list) => list);
 };
 
 const router = createBrowserRouter(generateRoutes());

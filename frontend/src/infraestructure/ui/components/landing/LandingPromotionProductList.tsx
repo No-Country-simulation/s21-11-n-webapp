@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { products, responsiveOptions } from "./productsMockup";
+import { products } from "./productsMockup";
 import { Carousel } from "primereact/carousel";
 import LandingPromotionProductItem from "./LandingPromotionProductItem";
 

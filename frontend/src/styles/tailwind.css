@@ -8,7 +8,7 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 body {
-  @apply bg-zinc-50 dark:bg-zinc-900;
+  @apply bg-zinc-100 dark:bg-zinc-900;
 }
 
 @theme {
