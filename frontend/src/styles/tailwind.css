@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @layer theme, base, components, utilities;
-
+/* @import "tailwindcss"; */
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" (base);
 @import "tailwindcss/utilities.css" layer(utilities);
@@ -8,12 +8,38 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 body {
-  @apply bg-zinc-100 dark:bg-zinc-900;
+  @apply bg-zinc-50 dark:bg-zinc-900;
 }
 
 @theme {
   /* custom theme for tailwind example */
-  --color-beige: oklch(0.956 0.015 69.38);
+  --color-prime-50: oklch(98.69% 0.0214 95.28);
+  --color-prime-100: oklch(96.45% 0.0604 96.14);
+  --color-prime-200: oklch(92.57% 0.1175 94.92);
+  --color-prime-300: oklch(88.59% 0.1539 91.23);
+  --color-prime-400: oklch(84.28% 0.1672 83.6);
+  --color-prime-500: oklch(77.33% 0.1677 68.83);
+  --color-prime-600: oklch(66.96% 0.1618 56.83);
+  --color-prime-700: oklch(55.82% 0.1496 48.03);
+  --color-prime-800: oklch(47.32% 0.1289 44.83);
+  --color-prime-900: oklch(41.68% 0.1081 45.87);
+  --color-prime-950: oklch(28.08% 0.0759 45.94);
 
-  --font-primary: Cookie, "sans_serif";
+  --font-primary: Lobster, "sans_serif";
+
+  --drop-shadow-3xl: 0 10px 10px rgba(0, 0, 0, 0.8);
+
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 }
