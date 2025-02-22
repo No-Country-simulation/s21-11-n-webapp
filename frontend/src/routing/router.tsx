@@ -1,10 +1,9 @@
-import ThemeProvider from "@/infraestructure/ui/components/layout/ThemeProvider";
-import { PrivateRoutes, PublicRoutes } from "@/routing/routes";
+import ThemeProvider from "@/infraestructure/ui/components/Layout/ThemeProvider";
+import { routeList } from "@/routing/routes";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 const generateRoutes = () => {
-  const { admin, user } = PrivateRoutes;
-  return [...PublicRoutes, ...user, ...admin];
+  return Object.values(routeList).map(list => list);
 };
 
 const router = createBrowserRouter(generateRoutes());

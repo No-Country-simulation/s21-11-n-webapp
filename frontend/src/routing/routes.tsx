@@ -1,41 +1,50 @@
-
 import LandingPage from "@/infraestructure/ui/pages/landing.page";
+import { Layout } from '@/infraestructure/ui/components/Layout/Layout';
+import { RouteList } from '@/domain/entities/RouteList';
 
-const PublicRoutes = [
-  {
-    path: "/",
-    element: <LandingPage />
+export const routeList: RouteList = {
+  publicRoutes: {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <LandingPage />
+      },
+      {
+        path: '/login',
+        element: <>login </>,
+      },
+      {
+        path: '/register',
+        element: <>register </>,
+      },
+      {
+        path: "*",
+        element: <>Not Found</>
+      }
+    ]
   },
-  {
-    path: '/login',
-    element: <>login </>,
+
+  userRoutes: {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '/history',
+        element: <>history </>,
+      },
+    ],
   },
-  {
-    path: '/register',
-    element: <>register </>,
-  },
-  {
-    path: "*",
-    element: <>Not Found</>
+
+  adminRoutes: {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '/dashboard',
+        element: <>dashboard </>,
+      },
+    ]
   }
-]
-
-const PrivateRoutes = {
-  user: [
-    {
-      path: '/history',
-      element: <>history </>,
-      roles: ['user'],
-    },
-  ],
-  admin: [
-    {
-      path: '/dashboard',
-      element: <>dashboard </>,
-      roles: ['admin'],
-    },
-  ]
 }
-
-
-export { PublicRoutes, PrivateRoutes }
