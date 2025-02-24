@@ -1,50 +1,51 @@
 import LandingPage from "@/infraestructure/ui/pages/landing.page";
-import { Layout } from '@/infraestructure/ui/components/Layout/Layout';
-import { RouteList } from '@/domain/entities/RouteList';
+
+import { RouteList } from "@/domain/entities/RouteList";
+import { Layout } from "@/infraestructure/ui/components/layout/Layout";
 
 export const routeList: RouteList = {
   publicRoutes: {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: '/',
-        element: <LandingPage />
+        path: "/",
+        element: <LandingPage />,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <>login </>,
       },
       {
-        path: '/register',
+        path: "/register",
         element: <>register </>,
       },
       {
         path: "*",
-        element: <>Not Found</>
-      }
-    ]
+        element: <>Not Found</>,
+      },
+    ],
   },
 
   userRoutes: {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: '/history',
+        path: "/history",
         element: <>history </>,
       },
     ],
   },
 
   adminRoutes: {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: '/dashboard',
+        path: "/dashboard",
         element: <>dashboard </>,
       },
-    ]
-  }
-}
+    ],
+  },
+};
