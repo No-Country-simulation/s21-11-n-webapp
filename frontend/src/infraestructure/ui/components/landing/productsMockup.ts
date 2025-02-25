@@ -51,7 +51,7 @@ export const products: ProductData[] = [
 export const responsiveOptions: CarouselResponsiveOption[] = [
   {
     breakpoint: "1024px", // lg
-    numVisible: 2,
+    numVisible: 4,
     numScroll: 1,
   },
   {

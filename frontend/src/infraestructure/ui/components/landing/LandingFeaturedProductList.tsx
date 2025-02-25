@@ -6,7 +6,7 @@ import LandingFeaturedProductItem from "./LandingFeaturedProductItem";
 
 function LandingFeaturedProducts() {
   return (
-    <div>
+    <section>
       <div className="flex flex-col gap-2 items-center text-center">
         <Icon
           icon="hugeicons:bread-01"
@@ -23,7 +23,7 @@ function LandingFeaturedProducts() {
         responsiveOptions={responsiveOptions}
         itemTemplate={LandingFeaturedProductItem}
       />
-    </div>
+    </section>
   );
 }
 
