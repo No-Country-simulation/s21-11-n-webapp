@@ -5,7 +5,7 @@ import LandingPromotionProductItem from "./LandingPromotionProductItem";
 
 function LandingPromotionProducts() {
   return (
-    <div>
+    <section>
       <div className="flex flex-col gap-2 items-center text-center mb-5">
         <Icon
           icon="lsicon:badge-promotion-outline"
@@ -23,7 +23,7 @@ function LandingPromotionProducts() {
           itemTemplate={LandingPromotionProductItem}
         />
       </div>
-    </div>
+    </section>
   );
 }
 
