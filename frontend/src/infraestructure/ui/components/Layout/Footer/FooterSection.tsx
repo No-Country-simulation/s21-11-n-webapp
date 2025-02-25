@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 interface FooterSectionProps {
-  title: string;
+  title?: string;
   children: ReactNode;
 }
 
@@ -11,9 +11,14 @@ export const FooterSection = (
   return (
     <>
       <div>
-        <div className='text-md pb-2'>
-          {title}
-        </div>
+        {
+          title
+          ? 
+          <div className='text-md pb-2 text-prime-500'>
+            {title}
+          </div>
+          : ''
+        }
         <div className='text-sm'>
           {children}
         </div>

@@ -1,7 +1,8 @@
 import LandingPage from "@/infraestructure/ui/pages/landing.page";
 
 import { RouteList } from "@/domain/entities/RouteList";
-import { Layout } from "@/infraestructure/ui/components/layout/Layout";
+import { Layout } from "@/infraestructure/ui/components/Layout/Layout";
+import { About } from '@/infraestructure/ui/pages/about';
 
 export const routeList: RouteList = {
   publicRoutes: {
@@ -15,6 +16,10 @@ export const routeList: RouteList = {
       {
         path: "/login",
         element: <>login </>,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/register",

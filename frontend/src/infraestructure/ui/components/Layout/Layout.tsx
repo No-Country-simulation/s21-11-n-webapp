@@ -12,7 +12,7 @@ export const Layout = () => {
       <main>
         <Outlet />
       </main>
-      <svg>
+      <svg className='hidden'>
         <filter id="noise">
           <feTurbulence type="turbulence" baseFrequency="0.5" />
         </filter>

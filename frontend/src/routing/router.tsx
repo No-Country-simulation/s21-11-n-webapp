@@ -1,4 +1,4 @@
-import ThemeProvider from "@/infraestructure/ui/components/layout/ThemeProvider";
+import ThemeProvider from "@/infraestructure/ui/components/Layout/ThemeProvider";
 import { routeList } from "@/routing/routes";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
