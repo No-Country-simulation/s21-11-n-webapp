@@ -2,36 +2,35 @@ import { Panel } from "primereact/panel";
 import { FooterSection } from "./FooterSection";
 import { FooterContactSection } from "./FooterContactSection";
 import { FooterSocialSection } from "./FooterSocialSection";
-import { FooterProductSection } from "./FooterProductSection";
 import { FooterOtherSection } from "./FooterOtherSection";
 
 export const Footer = () => {
   return (
     <>
-      <Panel className="border-none bg-red-300">
-        <div
-          className="
-          grid grid-cols-1 gap-5
-          sm:grid-cols-2
-          md:grid-cols-4
-        "
-        >
-          {/* CONTACTO */}
-          <FooterSection title="Contacto" children={<FooterContactSection />} />
-          {/* REDES */}
-          <FooterSection
-            title="Redes Sociales"
-            children={<FooterSocialSection />}
-          />
-          {/* PRODUCTOS */}
-          <FooterSection
-            title="Productos"
-            children={<FooterProductSection />}
-          />
-          {/* OTROS */}
-          <FooterSection title="Otros" children={<FooterOtherSection />} />
-        </div>
-      </Panel>
+      <div
+        className='
+          mx-4 px-1.5 pt-1.5 bg-prime-500 rounded-t-md
+          dark:bg-prime-400 dark:border-t-2 dark:border-x-2 dark:border-amber-700
+        '>
+        <Panel className="border-none">
+          <div
+            className="
+              grid grid-cols-1 gap-5 
+              sm:grid-cols-3
+            "
+          >
+            {/* CONTACTO */}
+            <FooterSection title="Contacto" children={<FooterContactSection />} />
+            {/* REDES */}
+            <FooterSection
+              title="Redes Sociales"
+              children={<FooterSocialSection />}
+            />
+            {/* OTROS */}
+            <FooterSection title="Otros" children={<FooterOtherSection />} />
+          </div>
+        </Panel>
+      </div>
     </>
   );
 };
