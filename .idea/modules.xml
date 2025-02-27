@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/bakesoft.iml" filepath="$PROJECT_DIR$/app/bakesoft.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/bakesoft.iml" filepath="$PROJECT_DIR$/.idea/bakesoft.iml" />
     </modules>
   </component>
 </project>
