@@ -5203,7 +5203,7 @@
   }
   .p-panel .p-panel-content {
     padding: 1rem;
-    background: #27272a;
+    background: #1f2d40;
     color: rgba(255, 255, 255, 0.87);
   }
   .p-panel .p-panel-footer {
@@ -6917,7 +6917,7 @@
       position: absolute;
       display: none;
       padding: 0.25rem 0;
-      background: #27272a;
+      background: #1f2d40;
       box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
         0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
       width: 100%;

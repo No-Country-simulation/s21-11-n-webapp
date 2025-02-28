@@ -1,22 +1,19 @@
-import { NavbarItemProps } from '@/domain/entities/NavbarItemProps'
-import { Icon } from '@iconify/react/dist/iconify.js'
-import { memo } from 'react'
+import { NavbarItemProps } from "@/domain/entities/NavbarItemProps";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { Button } from "primereact/button";
+import { memo } from "react";
 
-export const GenericNavbarItem = memo((
-  { item: { icon, label } }: NavbarItemProps
-) => {
-  // console.log('Item Rendered: ' + label);
-
-  return (
-    <div
-      className='p-menuitem-link flex items-center'
-    >
-      {
-        icon ? <Icon icon={icon} /> : ''
-      }
-      <div className='pl-2'>
-        {label}
-      </div>
-    </div>
-  )
-})
+export const GenericNavbarItem = memo(
+  ({ item: { icon, label } }: NavbarItemProps) => {
+    return (
+      <Button
+       label={label}
+        className="text-dark-secondary-b dark:text-light-secondary-b transition-none"
+        icon={<Icon icon={icon} />}
+        text
+        key={label}
+        autoFocus={false} 
+      />
+    );
+  }
+);

@@ -7,11 +7,7 @@ import { FooterOtherSection } from "./FooterOtherSection";
 export const Footer = () => {
   return (
     <>
-      <div
-        className='
-          mx-4 px-1.5 pt-1.5 bg-prime-500 rounded-t-md
-          dark:bg-prime-400 dark:border-t-2 dark:border-x-2 dark:border-amber-700
-        '>
+      <div className="max-w-6xl rounded-t mx-auto">
         <Panel className="border-none">
           <div
             className="
@@ -20,7 +16,10 @@ export const Footer = () => {
             "
           >
             {/* CONTACTO */}
-            <FooterSection title="Contacto" children={<FooterContactSection />} />
+            <FooterSection
+              title="Contacto"
+              children={<FooterContactSection />}
+            />
             {/* REDES */}
             <FooterSection
               title="Redes Sociales"

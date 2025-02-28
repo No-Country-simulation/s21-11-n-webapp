@@ -5,7 +5,7 @@ const LandingHeroPatternMobile = () => {
       data-name="Capa 2"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 399.79 544"
-      className="fill-zinc-300 dark:fill-zinc-500 absolute inset-0 w-full h-full md:hidden"
+      className="fill-dark-secondary-a/50 dark:fill-light-secondary-a/50 absolute inset-0 w-full h-full md:hidden"
     >
       <g id="Capa_1-2" data-name="Capa 1">
         <g>

@@ -1,10 +1,14 @@
-import { colors } from "./colors";
+import clsx from "clsx";
 
 interface LogotipoProps {
-  color?: "white" | "black" | "primary";
+  color?: boolean;
 }
 const Logotipo = ({ color }: LogotipoProps) => {
-  const selectColor = color ? colors[color] : colors.primary;
+  const selectColor = clsx({
+    "fill-prime-400": color,
+    "fill-dark-secondary-d dark:fill-light-secondary-d": !color,
+  });
+
   return (
     <svg
       id="Capa_2"

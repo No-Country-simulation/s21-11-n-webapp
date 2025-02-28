@@ -15,7 +15,7 @@ function LandingFeaturedProductItem({ id, name, src, price }: ProductData) {
       <span className="text-prime-600 text-xl dark:text-prime-400 font-semibold">
         ${price}.00
       </span>
-      <hr className="w-40 border-zinc-500/15 my-5" />
+      <hr className="w-40 opacity-15 my-5" />
       <Button
         onClick={handleBuy}
         label="Comprar"

@@ -27,7 +27,7 @@ function LandingPromotionProductItem({ id, name, price }: ProductData) {
           <span className="text-xl italic text-prime-600 dark:text-prime-400 md:font-semibold md:text-2xl">
             ${price}.00
           </span>
-          <hr className="w-full border-zinc-600/25 dark:border-zinc-400/25 my-5" />
+          <hr className="w-full  my-5" />
           <div className="mb-10 flex items-center justify-center md:justify-start gap-3">
             <div className="flex items-center gap-1">
               <Icon
@@ -59,23 +59,6 @@ function LandingPromotionProductItem({ id, name, price }: ProductData) {
           alt="pan de ajo"
         />
       </div>
-      {/* <div className=" rounded relative lg:grid lg:grid-cols-2 items-center overflow-hidden">
-        <div className="z-10 absolute lg:relative inset-0 flex flex-col justify-end items-center p-3">
-          <div className="flex flex-col bg-zinc-200/50 backdrop-blur w-fit px-2 py-1 rounded dark:bg-zinc-900/50">
-            <span className="text-2xl lg:text-6xl font-semibold">{name}</span>
-          </div>
-        </div>
-        <img
-          className="w-full rounded z-10"
-          src="https://www.cookingchoice.com.ec/wp-content/uploads/2023/09/2500X1667-1-1024x683.png"
-          alt="pan de ajo"
-        />
-        <img
-          className="w-full rounded absolute inset-0"
-          src="https://www.cookingchoice.com.ec/wp-content/uploads/2023/09/2500X1667-1-1024x683.png"
-          alt="pan de ajo"
-        />
-      </div> */}
     </div>
   );
 }

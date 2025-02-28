@@ -1,11 +1,15 @@
-import { colors } from "./colors";
+import clsx from "clsx";
 
 interface IsotipoProps {
-  color?: "white" | "black" | "primary";
+  color?: boolean;
 }
 
 const Isotipo = ({ color }: IsotipoProps) => {
-  const selectColor = color ? colors[color] : colors.primary;
+  const selectColor = clsx({
+    "fill-prime-400": color,
+    "fill-dark-secondary-d dark:fill-light-secondary-d": !color,
+  });
+
   return (
     <svg
       id="Capa_2"
