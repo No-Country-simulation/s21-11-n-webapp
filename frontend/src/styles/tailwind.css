@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @layer theme, base, components, utilities;
-/* @import "tailwindcss"; */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" (base);
 @import "tailwindcss/utilities.css" layer(utilities);
@@ -8,7 +7,7 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 body {
-  @apply bg-zinc-100 dark:bg-zinc-900;
+  @apply bg-surface;
 }
 
 body::before,
@@ -23,27 +22,32 @@ body::after {
 }
 body::before {
   filter: url(#noise);
-  opacity: 0.25;
+  opacity: 15%;
 }
 
 @theme {
-  /* custom theme for tailwind example */
-  --color-prime-50: oklch(98.69% 0.0214 95.28);
-  --color-prime-100: oklch(96.45% 0.0604 96.14);
-  --color-prime-200: oklch(92.57% 0.1175 94.92);
-  --color-prime-300: oklch(88.59% 0.1539 91.23);
-  --color-prime-400: oklch(84.28% 0.1672 83.6);
-  --color-prime-500: oklch(77.33% 0.1677 68.83);
-  --color-prime-600: oklch(66.96% 0.1618 56.83);
-  --color-prime-700: oklch(55.82% 0.1496 48.03);
-  --color-prime-800: oklch(47.32% 0.1289 44.83);
-  --color-prime-900: oklch(41.68% 0.1081 45.87);
-  --color-prime-950: oklch(28.08% 0.0759 45.94);
+  --color-primary: var(--primary-color);
+  --color-primary-text: var(--primary-color-text);
+  --color-text: var(--text-color);
+  --color-text-secondary: var(--text-color-secondary);
+
+  --color-surface: var(--surface-ground);
+  --color-surface-a: var(--surface-a);
+  --color-surface-b: var(--surface-b);
+  --color-surface-c: var(--surface-c);
+  --color-surface-d: var(--surface-d);
+  --color-surface-e: var(--surface-e);
+  --color-surface-f: var(--surface-f);
+  --color-surface-card: var(--surface-card);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-surface-border: var(--surface-border);
+  --color-surface-hover: var(--surface-hover);
+
+  --radius-default: var(--border-radius);
+  --shadow-focus: var(--focus-ring);
 
   --font-primary: Lobster, "sans_serif";
-
   --drop-shadow-3xl: 0 10px 10px rgba(0, 0, 0, 0.8);
-
   --animate-float: float 3s ease-in-out infinite;
 
   @keyframes float {
@@ -58,3 +62,6 @@ body::before {
     }
   }
 }
+/* @import "tailwindcss";
+@import 'primereact/resources/themes/vela-orange/theme.css';
+@import 'primereact/resources/primereact.min.css'; */
