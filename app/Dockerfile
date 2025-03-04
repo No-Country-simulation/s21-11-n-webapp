@@ -26,4 +26,4 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 
 # LEVANTAR NUESTRA APLICACION CUANDO EL CONTENEDOR INICIE
-ENTRYPOINT ["java","-jar","app/app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
