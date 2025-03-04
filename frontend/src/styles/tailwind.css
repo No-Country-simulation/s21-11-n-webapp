@@ -1,0 +1,67 @@
+@layer theme, base, components, utilities;
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" (base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+body {
+  @apply bg-surface;
+}
+
+body::before,
+body::after {
+  position: fixed;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: -99999;
+}
+body::before {
+  filter: url(#noise);
+  opacity: 15%;
+}
+
+@theme {
+  --color-primary: var(--primary-color);
+  --color-primary-text: var(--primary-color-text);
+  --color-text: var(--text-color);
+  --color-text-secondary: var(--text-color-secondary);
+
+  --color-surface: var(--surface-ground);
+  --color-surface-a: var(--surface-a);
+  --color-surface-b: var(--surface-b);
+  --color-surface-c: var(--surface-c);
+  --color-surface-d: var(--surface-d);
+  --color-surface-e: var(--surface-e);
+  --color-surface-f: var(--surface-f);
+  --color-surface-card: var(--surface-card);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-surface-border: var(--surface-border);
+  --color-surface-hover: var(--surface-hover);
+
+  --radius-default: var(--border-radius);
+  --shadow-focus: var(--focus-ring);
+
+  --font-primary: Lobster, "sans_serif";
+  --drop-shadow-3xl: 0 10px 10px rgba(0, 0, 0, 0.8);
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+/* @import "tailwindcss";
+@import 'primereact/resources/themes/vela-orange/theme.css';
+@import 'primereact/resources/primereact.min.css'; */
