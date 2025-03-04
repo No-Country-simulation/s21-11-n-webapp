@@ -13,7 +13,7 @@ RUN mvn dependency:go-offline
 COPY src ./src
 
 # PERMITE EJECUTAR EL INSTALL A PESAR DE NO TENER LAS ENVS. -D SKIP TESTS.
-RUN ./mvnw clean install -DskipTests
+RUN ./mvnw clean package -DskipTests
 
 FROM amazoncorretto:17
 
