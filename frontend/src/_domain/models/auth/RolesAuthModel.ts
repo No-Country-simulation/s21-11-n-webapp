@@ -1,5 +1,5 @@
 export enum AuthRoles {
-  ADMIN = "ADMIN",
-  USER = "USER",
-  NULL = "NULL",
+  ROLE_ADMIN = "ROLE_ADMIN",
+  ROLE_USER = "ROLE_USER",
+  ROLE_NULL = "ROLE_NULL",
 }

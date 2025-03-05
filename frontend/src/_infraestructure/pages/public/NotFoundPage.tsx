@@ -1,8 +1,10 @@
+import AnimatedPage from "@/_infraestructure/components/layout/pages/AnimatedPage";
+
 const NotFoundPage = () => {
   return (
-    <div>
+    <AnimatedPage>
       <h1>NotFoundPage</h1>
-    </div>
+    </AnimatedPage>
   );
 };
 

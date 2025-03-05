@@ -1,8 +1,11 @@
+import AnimatedPage from "@/_infraestructure/components/layout/pages/AnimatedPage";
+
+
 const ProfilePage = () => {
   return (
-    <div>
+    <AnimatedPage>
       <h1>ProfilePAge</h1>
-    </div>
+    </AnimatedPage>
   );
 };
 
