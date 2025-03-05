@@ -1,42 +1,40 @@
-import { useAuthStore } from "@/_infraestructure/store/auth/authStore";
-import { AuthRoles } from "@/_domain/models/auth/RolesAuthModel";
 import { LoginAuthModel } from "@/_domain/models/auth/LoginAuthModel";
+import { ErrorResponse } from "@/_domain/models/http/LoginHttpModel";
 import Cookies from "js-cookie";
-// import { postLogin } from "@/_infraestructure/http/auth/LoginHTTP"; //peticion lista para usar con backend
-
-interface useLoginResponse {
-  message: string;
-  success: boolean;
-}
+import { postLogin } from "@/_infraestructure/http/auth/LoginHTTP";
+import { AxiosError } from "axios";
+import { useState } from "react";
+import { toast } from "sonner";
+import { jwtDecode } from "jwt-decode";
+import { AuthRoles } from "@/_domain/models/auth/RolesAuthModel";
+import { PayloadJwt } from "./useAuth";
+import { useAuthStore } from "@/_infraestructure/store/auth/authStore";
 
 export const useAuthLogin = () => {
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setRole } = useAuthStore();
-  
-  // Esto es temporal aqui hay que hacer la logica con el backend
 
-  const login = (data: LoginAuthModel): useLoginResponse => {
-    const { email, password } = data;
-    if (email === "test@admin.com" && password === "@Admin12345") {
-      setRole(AuthRoles.ADMIN);
-      Cookies.set("token", "ADMIN", { secure: true, sameSite: "Strict" });
-      return {
-        success: true,
-        message: "Bienvenido administrador",
-      };
-    } else if (email === "test@user.com" && password === "@User12345") {
-      setRole(AuthRoles.USER);
-      Cookies.set("token", "USER", { secure: true, sameSite: "Strict" });
-      return {
-        success: true,
-        message: "Bienvenido usuario",
-      };
-    } else {
-      return {
-        success: false,
-        message: "Credenciales incorrectas",
-      };
-    }
+  const loginResponse = async (loginData: LoginAuthModel) => {
+    setIsLoading(true);
+    toast.promise(postLogin(loginData), {
+      loading: "Cargando...",
+      success: ({ refreshToken, token }) => {
+        Cookies.set("token", token);
+        Cookies.set("refreshToken", refreshToken);
+        setIsSuccess(true);
+        const { roles } = jwtDecode<PayloadJwt>(token);
+        setRole(roles?.[0] ?? AuthRoles.ROLE_NULL);
+        return "Inicio de sesión exitoso";
+      },
+      error: (error: AxiosError<ErrorResponse>) => {
+        return error.response?.data.message;
+      },
+      finally: () => {
+        setIsLoading(false);
+      },
+    });
   };
 
-  return { login };
+  return { loginResponse, isSuccess, isLoading };
 };
