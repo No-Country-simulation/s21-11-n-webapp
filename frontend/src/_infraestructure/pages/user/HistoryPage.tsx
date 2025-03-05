@@ -1,8 +1,10 @@
+import AnimatedPage from "@/_infraestructure/components/layout/pages/AnimatedPage";
+
 const HistoryPage = () => {
   return (
-    <div>
+    <AnimatedPage>
       <h1>HistoryPage</h1>
-    </div>
+    </AnimatedPage>
   );
 };
 

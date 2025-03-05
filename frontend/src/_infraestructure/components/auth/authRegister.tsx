@@ -1,40 +1,38 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { RegisterAuthModel } from "@/_domain/models/auth/RegisterAuthModel";
+import useRegister from "@/_infraestructure/hooks/auth/useRegister";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { AnimatePresence, motion } from "motion/react";
+import { Button } from "primereact/button";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
-import { AnimatePresence, motion } from "motion/react";
-import { LoginAuthModel } from "@/_domain/models/auth/LoginAuthModel";
-import { useAuthLogin } from "@/_infraestructure/hooks/auth/useLogin";
-import { useCallback, useEffect } from "react";
+import { InputText } from "primereact/inputtext";
+import { Dispatch, SetStateAction, useCallback, useEffect } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import FullScreenLoading from "../layout/FullScreenLoading";
 
-interface AuthLoginProps {
-  closeModal: () => void;
+interface AuthRegisterProps {
+  setIndex: Dispatch<SetStateAction<number>>;
 }
 
-const AuthLogin = ({ closeModal }: AuthLoginProps) => {
-  const { loginResponse, isSuccess, isLoading } = useAuthLogin();
-
+const AuthRegister = ({ setIndex }: AuthRegisterProps) => {
+  const { isLoading, isSuccess, registerResponse } = useRegister();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginAuthModel>({
-    resolver: zodResolver(LoginAuthModel),
+  } = useForm<RegisterAuthModel>({
+    resolver: zodResolver(RegisterAuthModel),
   });
-
-  const handleLogin: SubmitHandler<LoginAuthModel> = useCallback(
-    async (data: LoginAuthModel) => {
-      await loginResponse(data);
+  const handleRegister: SubmitHandler<RegisterAuthModel> = useCallback(
+    async (data) => {
+      await registerResponse(data);
     },
-    [loginResponse]
+    [registerResponse]
   );
 
   useEffect(() => {
-    if (isSuccess) closeModal();
+    if (isSuccess) setIndex(0);
   }, [isSuccess]);
 
   return (
@@ -50,9 +48,9 @@ const AuthLogin = ({ closeModal }: AuthLoginProps) => {
         }}
       >
         <form
-          onSubmit={handleSubmit(handleLogin)}
           autoComplete="off"
           className="flex flex-col gap-5"
+          onSubmit={handleSubmit(handleRegister)}
         >
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="email">Correo</label>
@@ -77,7 +75,6 @@ const AuthLogin = ({ closeModal }: AuthLoginProps) => {
               {errors.email ? errors.email.message : "Ingrese su correo"}
             </small>
           </div>
-
           <div className="flex flex-col gap-2">
             <label htmlFor="password">Clave</label>
             <IconField iconPosition="left">
@@ -101,8 +98,7 @@ const AuthLogin = ({ closeModal }: AuthLoginProps) => {
               {errors.password ? errors.password.message : "Ingrese su clave"}
             </small>
           </div>
-
-          <Button disabled={isLoading} type="submit" label="Entrar" />
+          <Button disabled={isLoading} type="submit" label="Registrar" />
         </form>
         <div className="flex items-center mt-10">
           <hr className="w-full opacity-50" />
@@ -131,4 +127,4 @@ const AuthLogin = ({ closeModal }: AuthLoginProps) => {
   );
 };
 
-export default AuthLogin;
+export default AuthRegister;

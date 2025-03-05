@@ -1,24 +1,27 @@
 import { AuthRoles } from "@/_domain/models/auth/RolesAuthModel";
 import { Button } from "primereact/button";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import SigninButton from "./SigninButton";
+import { Icon } from "@iconify/react";
 import { useAuthStore } from "@/_infraestructure/store/auth/authStore";
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import LogOutButton from "./LogOutButton";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import LogOutButton from "./authLogout";
 import { useNavigate } from "react-router";
+import SigninButton from "./authSignin";
 
 const AuthButton = () => {
   const { userRole } = useAuthStore();
   const [visible, setVisible] = useState(false);
   const nav = useNavigate();
-  const toggleMenu = () => setVisible(!visible);
+
+  const toggleMenu = () => setVisible((prev) => !prev);
   const closeMenu = () => setVisible(false);
-  const goProfile = () => {
-    nav("/perfil");
+
+  useEffect(() => {
     closeMenu();
-  };
-  if (userRole === AuthRoles.NULL) return <SigninButton />;
+  }, [userRole]);
+
+  if (userRole === AuthRoles.ROLE_NULL) return <SigninButton />;
+
   return (
     <div className="relative">
       <Button
@@ -36,7 +39,10 @@ const AuthButton = () => {
             transition={{ duration: 0.2 }}
           >
             <Button
-              onClick={goProfile}
+              onClick={() => {
+                nav("/perfil");
+                closeMenu();
+              }}
               text
               icon={
                 <Icon
