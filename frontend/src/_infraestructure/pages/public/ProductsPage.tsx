@@ -1,10 +1,8 @@
-import AnimatedPage from "@/_infraestructure/components/layout/pages/AnimatedPage";
-
 const ProductsPage = () => {
   return (
-    <AnimatedPage>
+    <div>
       <h1>ProductsPage</h1>
-    </AnimatedPage>
+    </div>
   );
 };
 

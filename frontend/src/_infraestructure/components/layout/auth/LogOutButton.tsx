@@ -1,13 +1,17 @@
-import { useAuthLogout } from "@/_infraestructure/hooks/auth/useLogout";
+import { AuthRoles } from "@/_domain/models/auth/RolesAuthModel";
+import { useAuthStore } from "@/_infraestructure/store/auth/authStore";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Cookies from "js-cookie";
 import { Button } from "primereact/button";
 import { ConfirmDialog } from "primereact/confirmdialog";
 import { confirmDialog } from "primereact/confirmdialog";
-import FullScreenLoading from "../layout/FullScreenLoading";
-import { AnimatePresence } from "motion/react";
+import { useNavigate } from "react-router";
+import { toast } from "sonner";
+
 
 const LogOutButton = () => {
-  const { acceptLogout, isLoading } = useAuthLogout();
+  const nav = useNavigate();
+  const { setRole } = useAuthStore();
   const confirmLogout = () => {
     confirmDialog({
       message: "¿Seguro que quieres cerrar sesión?",
@@ -22,14 +26,19 @@ const LogOutButton = () => {
       ),
       acceptLabel: "Sí, salir",
       rejectLabel: "Cancelar",
-      accept: acceptLogout,
+      accept: () => {
+        Cookies.remove("token");
+        setRole(AuthRoles.NULL);
+        toast.info("Sesión cerrada");
+        nav("/");
+      },
     });
   };
 
   return (
     <>
       <Button
-        className="w-full"
+      className="w-full"
         onClick={confirmLogout}
         label="Salir"
         text
@@ -45,7 +54,6 @@ const LogOutButton = () => {
       />
 
       <ConfirmDialog draggable={false} />
-      <AnimatePresence>{isLoading && <FullScreenLoading />}</AnimatePresence>
     </>
   );
 };
