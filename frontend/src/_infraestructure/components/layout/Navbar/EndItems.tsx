@@ -3,7 +3,7 @@ import { Skeleton } from "primereact/skeleton";
 import { useAuthStore } from "@/_infraestructure/store/auth/authStore";
 import CartButton from "../Cart/CartButton";
 import { AuthRoles } from "@/_domain/models/auth/RolesAuthModel";
-import AuthButton from "../../auth/AuthButton";
+import AuthButton from "../../auth/authButton";
 
 const EndItems = () => {
   const { userRole } = useAuthStore();
