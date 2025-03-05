@@ -14,7 +14,7 @@ export const FooterSection = (
         {
           title
           ? 
-          <div className='text-md pb-2 text-primary text-2xl font-semibold'>
+          <div className='text-md pb-2 text-primary'>
             {title}
           </div>
           : ''

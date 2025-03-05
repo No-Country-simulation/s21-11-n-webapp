@@ -2,8 +2,8 @@ import { ThemeNavbarItem } from "./ThemeNavbarItem";
 import { Skeleton } from "primereact/skeleton";
 import { useAuthStore } from "@/_infraestructure/store/auth/authStore";
 import CartButton from "../Cart/CartButton";
+import AuthButton from "../auth/AuthButton";
 import { AuthRoles } from "@/_domain/models/auth/RolesAuthModel";
-import AuthButton from "../../auth/AuthButton";
 
 const EndItems = () => {
   const { userRole } = useAuthStore();
@@ -19,7 +19,7 @@ const EndItems = () => {
   return (
     <>
       <div className="flex items-center mr-2 gap-2">
-        {userRole === AuthRoles.ROLE_USER && <CartButton />}
+        {userRole === AuthRoles.USER && <CartButton />}
         <ThemeNavbarItem />
         <AuthButton />
       </div>

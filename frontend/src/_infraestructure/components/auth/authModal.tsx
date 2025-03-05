@@ -4,8 +4,7 @@ import { AnimatePresence } from "motion/react";
 import { useState } from "react";
 
 import { useAuthTabs } from "./authTabs";
-import AuthLogin from "./authLogin";
-import AuthRegister from "./authRegister";
+import Login from "./authLogin";
 
 export interface AuthModalProps {
   visible: boolean;
@@ -35,11 +34,9 @@ const AuthModal = ({ visible, visibleOff }: AuthModalProps) => {
         />
         <div className="p-4">
           <AnimatePresence mode="wait">
-            {activeIndex === 0 && (
-              <AuthLogin closeModal={visibleOff} key="login" />
-            )}
+            {activeIndex === 0 && <Login closeModal={visibleOff} key="login" />}
             {activeIndex === 1 && (
-              <AuthRegister setIndex={setActiveIndex} key="register" />
+              <Login closeModal={visibleOff} key="register" /> // Agregar componente registro
             )}
           </AnimatePresence>
         </div>
