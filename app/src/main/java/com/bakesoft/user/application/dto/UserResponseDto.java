@@ -8,12 +8,12 @@ import java.util.Set;
 import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"userId", "email", "name", "lastname", "dni", "roles"})
+@JsonPropertyOrder({"userId", "email", "roles", "isActive"})
 public record UserResponseDto(
         UUID userId,
         String email,
-        String name,
-        String lastname,
-        Set<RoleResponseDto> roles
+        Set<RoleResponseDto> roles,
+        Boolean isActive
+
 ) {
 }
