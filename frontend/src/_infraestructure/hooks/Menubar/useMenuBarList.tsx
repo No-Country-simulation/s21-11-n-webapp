@@ -8,8 +8,8 @@ const useMenuBarList = (): MenuItem[] => {
     useMenuBarState();
   const { userRole } = useAuthStore();
 
-  if (userRole === AuthRoles.ROLE_NULL) return unauthenticatedMenuItems;
-  return userRole === AuthRoles.ROLE_ADMIN ? adminMenuItems : userMenuItems;
+  if (userRole === AuthRoles.NULL) return unauthenticatedMenuItems;
+  return userRole === AuthRoles.ADMIN ? adminMenuItems : userMenuItems;
 };
 
 export default useMenuBarList;
