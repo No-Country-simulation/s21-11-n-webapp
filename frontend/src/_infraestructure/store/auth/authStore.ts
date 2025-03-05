@@ -8,7 +8,7 @@ type AuthStore = {
 };
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
-  userRole: AuthRoles.NULL,
+  userRole: AuthRoles.ROLE_NULL,
   setRole: (role) => set({ userRole: role }),
   getRole: () => get().userRole,
 }));

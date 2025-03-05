@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router";
 const AdminLayout = () => {
   const { getRole } = useAuthStore();
 
-  if (getRole() !== AuthRoles.ADMIN)
+  if (getRole() !== AuthRoles.ROLE_ADMIN)
     return <Navigate to="/?error=auth" replace />;
 
   return <Outlet />;
