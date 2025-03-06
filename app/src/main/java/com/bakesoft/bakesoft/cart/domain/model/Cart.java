@@ -1,13 +1,12 @@
 package com.bakesoft.bakesoft.cart.domain.model;
 
-import com.bakesoft.bakesoft.cart.domain.enums.Status;
+import com.bakesoft.bakesoft.cart.domain.enums.CartStatus;
 import com.bakesoft.bakesoft.entity.domain.model.EntityClass;
-import com.bakesoft.bakesoft.product.domain.model.Product;
-import com.bakesoft.bakesoft.user.domain.enums.Country;
 import com.bakesoft.bakesoft.user.domain.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,14 +22,28 @@ public class Cart extends EntityClass {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany
-    @JoinTable(
-            name = "carts_products_relation",
-            joinColumns = @JoinColumn(name = "cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private Set<Product> products;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CartItem> cartItems = new HashSet<>();
 
     @Column(name = "cart_status", nullable = false, length = 9)
-    private Status status = Status.ACTIVE;
+    private CartStatus cartStatus = CartStatus.ACTIVE;
+
+    // Helper method to add a product with quantity
+    public void addProduct(CartItem cartItem) {
+        cartItems.add(cartItem);
+        cartItem.setCart(this);
+    }
+
+    // Helper method to remove a product
+    public void removeProduct(CartItem cartItem) {
+        cartItems.remove(cartItem);
+        cartItem.setCart(null);
+    }
+
+    // Calculate total amount
+    public Double calculateTotalAmount() {
+        return cartItems.stream()
+                .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
+                .sum();
+    }
 }
