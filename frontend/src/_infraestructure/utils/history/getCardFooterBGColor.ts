@@ -5,19 +5,19 @@ export const getCardFooterBGColor = (
 ): string => {
   switch (state) {
     case 'Aprobado':
-      return 'bg-green-300';
+      return 'text-green-900 bg-green-100 rounded p-1 font-semibold';
     case 'Cancelado':
-      return 'bg-red-400';
+      return 'text-red-900 bg-red-100 rounded p-1 font-semibold';
     case 'Devuelto':
-      return 'bg-cyan-300';
+      return 'text-cyan-900 bg-cyan-100 rounded p-1 font-semibold';
     case 'Pendiente':
-      return 'bg-orange-300';
+      return 'text-orange-900 bg-orange-100 rounded p-1 font-semibold';
     case 'Procesando':
-      return 'bg-purple-300';
+      return 'text-purple-900 bg-purple-100 rounded p-1 font-semibold';
     case 'Rechazado':
-      return 'bg-pink-400';
+      return 'text-pink-900 bg-pink-100 rounded p-1 font-semibold';
     case 'Disputa':
-      return 'bg-yellow-400';
+      return 'text-yellow-900 bg-yellow-100 rounded p-1 font-semibold';
     default:
       return '';
   }

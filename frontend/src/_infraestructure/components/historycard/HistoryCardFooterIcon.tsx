@@ -10,12 +10,12 @@ export const HistoryCardFooterIcon = (
 ) => {
   switch (state) {
     case 'Aprobado': return <Icon icon="raphael:checked" />
-    case 'Cancelado': return <Icon icon="emojione-v1:cancellation-x" />
+    case 'Cancelado': return <Icon icon="ix:cancelled" />
     case 'Devuelto': return <Icon icon="healthicons:refused-24px" />
     case 'Disputa': return <Icon icon="heroicons-outline:exclamation" />
     case 'Pendiente': return <Icon icon="mdi:clock" />
     case 'Procesando': return <Icon icon="lsicon:working-odd-filled" />
-    case 'Rechazado': return <Icon icon="healthicons:refused-negative" />
+    case 'Rechazado': return <Icon icon="icon-park-outline:reject" />
     default: return <></>
   }
 }

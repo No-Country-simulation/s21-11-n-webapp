@@ -5,7 +5,7 @@ const LandingHero = () => {
   return (
     <section
       id="LandingHero"
-      style={{ height: "calc(100dvh - 61px)" }}
+      style={{ height: "calc(100svh - 61px)" }}
       className="h-screen scroll-mt-[61px] pt-5 md:pt-10"
     >
       <div className="max-w-6xl py-20 mx-auto relative">

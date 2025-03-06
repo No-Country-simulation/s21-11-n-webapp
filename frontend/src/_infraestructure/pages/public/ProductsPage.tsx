@@ -3,7 +3,9 @@ import AnimatedPage from "@/_infraestructure/components/layout/pages/AnimatedPag
 const ProductsPage = () => {
   return (
     <AnimatedPage>
-      <h1>ProductsPage</h1>
+      <div className="flex">
+        <h1>ProductsPage</h1>
+      </div>
     </AnimatedPage>
   );
 };

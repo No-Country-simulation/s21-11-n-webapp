@@ -9,7 +9,7 @@ export const HistoryCardOnlyTimeSection = (
   { date }: HistoryCardOnlyTimeSectionProps
 ) => {
   return (
-    <div className='flex gap-1 items-center'>
+    <div className='flex gap-1 items-center text-text'>
       <Icon icon="tabler:clock-hour-3" />
       <div>
         {transformDateToTimeOnlyString(date)}

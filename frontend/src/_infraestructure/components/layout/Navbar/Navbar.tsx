@@ -7,7 +7,7 @@ import useMenuBarList from "@/_infraestructure/hooks/Menubar/useMenuBarList";
 export const Navbar = () => {
   return (
     <Menubar
-      className="sticky top-0 z-10 border-none rounded-none md:px-10"
+      className="sticky top-0 z-10 h-15 border-none rounded-none md:px-10"
       model={useMenuBarList()}
       start={
         <div className="mr-2">

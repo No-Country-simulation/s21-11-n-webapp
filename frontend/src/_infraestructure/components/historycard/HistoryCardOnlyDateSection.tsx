@@ -10,7 +10,7 @@ export const HistoryCardOnlyDateSection = (
 ) => {
   return (
     <>
-      <div className='flex gap-2 items-center'>
+      <div className='flex gap-2 items-center text-text'>
         <Icon icon="uiw:date" />
         <div>
           {transformDateToDateOnlyString(date)}

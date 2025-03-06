@@ -7,7 +7,7 @@ import LandingFeaturedProductItem from "./LandingFeaturedProductItem";
 function LandingFeaturedProducts() {
   return (
     <section
-      style={{ height: "calc(100dvh - 61px)" }}
+      style={{ height: "calc(100svh - 61px)" }}
       className="h-screen scroll-mt-[61px] pt-5 md:pt-10"
       id="LandingFeaturedProducts"
     >
