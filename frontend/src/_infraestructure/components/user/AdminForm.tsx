@@ -5,9 +5,6 @@ import AdminLogo from "./AdminLogo";
 import { InputTextarea } from "primereact/inputtextarea";
 import FormGroup from "./FormGroup";
 import { AdminUpdateModel } from "@/_domain/models/user/AdminUpdateProfile";
-import { InputNumber } from "primereact/inputnumber";
-import { IconField } from "primereact/iconfield";
-import { InputIcon } from "primereact/inputicon";
 
 const AdminForm = () => {
   const {
