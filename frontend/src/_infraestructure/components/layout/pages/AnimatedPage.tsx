@@ -14,8 +14,8 @@ const AnimatedPage = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: 100 }}
       transition={{ duration: 0.25 }}
-      className={className + " max-w-6xl mx-auto"}
-      style={{ minHeight: "calc(100vh - 300px)" }}
+      className={className + " max-w-6xl mx-auto flex flex-col"}
+      style={{ minHeight: "calc(100svh - 300px)" }}
     >
       {children}
     </motion.div>
