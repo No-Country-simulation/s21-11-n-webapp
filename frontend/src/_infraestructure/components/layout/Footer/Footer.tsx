@@ -6,10 +6,10 @@ import { FooterOtherSection } from "./FooterOtherSection";
 export const Footer = () => {
   return (
     <>
-      <div className="bg-surface-a h-60">
+      <div className="bg-surface-a md:h-60">
         <div
           color="primary"
-          className="mx-auto max-w-6xl h-full flex items-center justify-center"
+          className="mx-auto max-w-6xl h-full flex items-center justify-center p-5 md:p-0"
         >
           <div
             className="

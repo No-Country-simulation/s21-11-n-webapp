@@ -2,12 +2,15 @@ import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { AuthRoles } from "@/_domain/models/auth/RolesAuthModel";
 import { jwtDecode } from "jwt-decode";
-import { useAuthStore } from "@/_infraestructure/store/auth/authStore";
+import {
+  useAuthStore,
+  useUserEmail,
+} from "@/_infraestructure/store/auth/authStore";
 import { toast } from "sonner";
 
 export const useAuth = (): void => {
   const { setRole } = useAuthStore();
-
+  const { setEmail } = useUserEmail();
   useEffect(() => {
     const validateToken = () => {
       const token = Cookies.get("token");
@@ -18,8 +21,9 @@ export const useAuth = (): void => {
       }
 
       try {
-        const { roles } = jwtDecode<PayloadJwt>(token);
+        const { roles, sub } = jwtDecode<PayloadJwt>(token);
         setRole(roles?.[0] ?? AuthRoles.ROLE_NULL);
+        setEmail(sub);
       } catch {
         toast.error("Token inválido o corrupto");
         setRole(AuthRoles.ROLE_NULL);
