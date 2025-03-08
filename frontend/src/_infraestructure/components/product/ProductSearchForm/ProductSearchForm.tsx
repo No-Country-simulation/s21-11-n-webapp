@@ -1,43 +1,65 @@
+import { ProductoSearchFormAttributes } from '@/_domain/models/products/ProductoSearchFormAttributes';
 import { productFilterOptions } from '@/_infraestructure/utils/products/productFilterOptions';
+import { productFormClasses } from '@/_infraestructure/utils/products/productFormClasses';
 import { productSortOptions } from '@/_infraestructure/utils/products/productSortOptions';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import clsx from 'clsx';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext'
-import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+
+const { iconClasses, leftInputSide } = productFormClasses
 
 export const ProductSearchForm = () => {
-  const [textToSearch, setTextToSearch] = useState('');
-  const [productSort, setProductSort] = useState('Más Nuevo');
-  const [productFilter, setProductFilter] = useState('Todos');
+
+  const { control, handleSubmit } = useForm<ProductoSearchFormAttributes>({
+    defaultValues: {
+      textToSearch: '',
+      productSort: 'Más Nuevo',
+      productFilter: 'Todos',
+    },
+  });
+
+  const onSubmit = (
+    data: ProductoSearchFormAttributes
+  ) => {
+    console.log('ON SUBMIT');
+    console.log(data);
+  };
+
 
   return (
     <>
       <form
         className='
           flex flex-col py-6 px-4 gap-5
-          sm:px-10
+          sm:py-12
+          md:px-10 md:flex-row md:justify-between
+          lg:py-15
           xl:px-0
-          md:flex-row md:justify-between
         '
+        onSubmit={handleSubmit(onSubmit)}
       >
         {/* BUSCADOR */}
         <div className='flex'>
           <button
             type='submit'
-            className='
-              min-w-9
-              flex justify-center items-center bg-transparent
-              border-y border-r-0 border-l border-text-secondary
-              rounded-l-lg
-            '
+            className={
+              clsx(leftInputSide, 'border-0 bg-primary dark:bg-primary cursor-pointer')
+            }
           >
-            <Icon className='text-text-text' icon="pajamas:search" />
+            <Icon className='text-surface-d dark:text-surface-d' icon="pajamas:search" />
           </button>
-          <InputText
-            className='w-full border-l-text-secondary'
-            value={textToSearch}
-            onChange={(e) => setTextToSearch(e.target.value)}
-            placeholder='Buscar Producto ...'
+          <Controller
+            name='textToSearch'
+            control={control}
+            render={({ field }) => (
+              <InputText
+                {...field}
+                className="w-full"
+                placeholder="Buscar Producto ..."
+              />
+            )}
           />
         </div>
 
@@ -51,41 +73,37 @@ export const ProductSearchForm = () => {
         >
           {/* TIPO */}
           <div className='flex flex-1'>
-            <div
-              className='
-                min-w-9
-                flex justify-center items-center bg-transparent
-                border-y border-r-0 border-l border-surface-d
-                rounded-l-lg
-              '
-            >
-              <Icon className='text-surface-d' icon="cil:filter" />
+            <div className={leftInputSide}>
+              <Icon className={iconClasses} icon="cil:filter" />
             </div>
-            <Dropdown
-              className='w-full'
-              value={productFilter}
-              onChange={(e) => setProductFilter(e.target.value)}
-              options={[...productFilterOptions]}
+            <Controller
+              name='productFilter'
+              control={control}
+              render={({ field }) => (
+                <Dropdown
+                  {...field}
+                  className='w-full'
+                  options={[...productFilterOptions]}
+                />
+              )}
             />
           </div>
 
           {/* ORDEN */}
           <div className='flex flex-1'>
-            <div
-              className='
-                min-w-9
-                flex justify-center items-center bg-transparent
-                border-y border-r-0 border-l border-surface-d
-                rounded-l-lg
-              '
-            >
-              <Icon className='text-surface-d' icon="grommet-icons:sort" />
+            <div className={leftInputSide}>
+              <Icon className={iconClasses} icon="grommet-icons:sort" />
             </div>
-            <Dropdown
-              className='w-full'
-              value={productSort}
-              onChange={(e) => setProductSort(e.target.value)}
-              options={[...productSortOptions]}
+            <Controller
+              name='productSort'
+              control={control}
+              render={({ field }) => (
+                <Dropdown
+                  {...field}
+                  className='w-full'
+                  options={[...productSortOptions]}
+                />
+              )}
             />
           </div>
         </div>
