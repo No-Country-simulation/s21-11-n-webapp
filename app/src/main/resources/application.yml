@@ -1,9 +1,10 @@
 spring:
   application:
-    name: server
+    name: bakesoft
   datasource:
-    url: jdbc:mysql://localhost/bakesoft
-    username: root
+    url: jdbc:mysql://${DB_URL}/${DB_NAME}
+    username:  ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
