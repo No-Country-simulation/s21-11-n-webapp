@@ -5,49 +5,49 @@ import { ProductSearchForm } from '@/_infraestructure/components/product/Product
 
 const temporalProductList: ProductCard[] = [
   {
-    id: 1,
+    productId: 1,
     title: 'Pan de muerto',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
     price: 2.5423,
     image: '',
   },
   {
-    id: 2,
+    productId: 2,
     title: 'Torta de chocolate',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
     price: 25.21,
     image: '',
   },
   {
-    id: 3,
+    productId: 3,
     title: 'Torta de leche',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
     price: 21,
     image: '',
   },
   {
-    id: 4,
+    productId: 4,
     title: 'Mermelada',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
     price: 20.20,
     image: 'https://picsum.photos/300/200',
   },
   {
-    id: 5,
+    productId: 5,
     title: 'Pan de trigo',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
     price: 1.20,
     image: '',
   },
   {
-    id: 6,
+    productId: 6,
     title: 'Sandwich de mortadela',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
     price: 2.5421,
     image: '',
   },
   {
-    id: 7,
+    productId: 7,
     title: 'Pan francés',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
     price: 4.20,
@@ -74,7 +74,7 @@ const ProductsPage = () => {
           '>
             {
               temporalProductList.map(
-                card => <ProductCardComponent key={card.id} {...card} />
+                card => <ProductCardComponent key={card.productId} {...card} />
               )
             }
           </div>

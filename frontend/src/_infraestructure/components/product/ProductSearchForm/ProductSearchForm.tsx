@@ -6,11 +6,12 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import clsx from 'clsx';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext'
+import { memo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 const { iconClasses, leftInputSide } = productFormClasses
 
-export const ProductSearchForm = () => {
+export const ProductSearchForm = memo(() => {
 
   const { control, handleSubmit } = useForm<ProductoSearchFormAttributes>({
     defaultValues: {
@@ -110,4 +111,4 @@ export const ProductSearchForm = () => {
       </form>
     </>
   )
-}
+})
