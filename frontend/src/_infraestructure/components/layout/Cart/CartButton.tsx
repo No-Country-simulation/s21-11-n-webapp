@@ -2,13 +2,17 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button } from "primereact/button";
 import { Sidebar } from "primereact/sidebar";
 import { useState } from "react";
+import { CartPanel } from './CartPanel';
+import { useCartStore } from '@/_infraestructure/store/cart/cartStore';
 
 const CartButton = () => {
   const [visibleRight, setVisibleRight] = useState(false);
+  const { cartStore } = useCartStore();
+
   return (
     <>
       <Button
-        badge="5"
+        badge={String(cartStore.length)}
         outlined
         label="Carrito"
         onClick={() => setVisibleRight(true)}
@@ -26,8 +30,7 @@ const CartButton = () => {
         position="right"
         onHide={() => setVisibleRight(false)}
       >
-        <h2>Carrito de compras</h2>
-        <p>carrito component</p>
+        <CartPanel />
       </Sidebar>
     </>
   );
