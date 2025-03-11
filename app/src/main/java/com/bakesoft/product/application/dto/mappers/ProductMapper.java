@@ -52,7 +52,7 @@ public class ProductMapper implements EntityMapper<Product, ProductDto> {
     @Mapping(target = "categories", ignore = true) // Si no quieres actualizar categorías automáticamente
     @Mapping(target = "active", ignore = true)
         // No permite modificar si está activo
-    void updateProductFromDto(ProductDto dto, @MappingTarget Product entity) {
+    public void updateProductFromDto(ProductDto dto, @MappingTarget Product entity) {
 
     }
 
