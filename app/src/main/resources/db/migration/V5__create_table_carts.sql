@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS carts (
+    id BINARY(16) NOT NULL PRIMARY KEY, -- UUID como clave primaria
+    user_id BINARY(16),                 -- UUID del usuario
+    cart_status ENUM('ACTIVE', 'INACTIVE', 'PENDING') NOT NULL DEFAULT 'ACTIVE',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_cart_user FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL
+);
