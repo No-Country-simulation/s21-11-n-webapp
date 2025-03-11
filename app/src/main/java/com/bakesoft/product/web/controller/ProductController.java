@@ -3,6 +3,7 @@ package com.bakesoft.product.web.controller;
 import com.bakesoft.common.dto.PageResponse;
 import com.bakesoft.product.application.dto.ProductDto;
 import com.bakesoft.product.application.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -47,6 +48,17 @@ public class ProductController {
             @RequestParam String query,
             @PageableDefault(size = 20, sort = "id") Pageable pageable) {
         return ResponseEntity.ok(productService.searchProducts(query, pageable));
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto) {
+        return ResponseEntity.ok(productService.createProduct(productDto));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable UUID id,
+                                                    @Valid @RequestBody ProductDto productDto) {
+        return ResponseEntity.ok(productService.updateProduct(id, productDto));
     }
 }
 

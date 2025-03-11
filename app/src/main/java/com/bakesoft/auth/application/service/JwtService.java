@@ -3,6 +3,7 @@ package com.bakesoft.auth.application.service;
 import com.bakesoft.auth.exception.InvalidTokenException;
 import com.bakesoft.auth.exception.TokenExpiredException;
 import com.bakesoft.auth.exception.TokenProcessingException;
+import com.bakesoft.user.domain.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -19,6 +20,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -38,7 +40,8 @@ public class JwtService {
         return new Date(System.currentTimeMillis() + 1000 * 3600 * 10);
     }
 
-    public String createToken(String username, Map<String, Object> claims) {
+    public String createToken(UUID userId, String username, Map<String, Object> claims) {
+        claims.put("userId", userId.toString()); // Asegurar que el userId se agregue
 
         return Jwts.builder()
                 .claims(claims)
@@ -49,14 +52,21 @@ public class JwtService {
                 .compact();
     }
 
-    public String generateToken(UserDetails userDetails) {
+
+    public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", userDetails.getAuthorities().stream()
+
+        // Agregar los roles al token
+        claims.put("roles", user.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList()));
 
-        return createToken(userDetails.getUsername(), claims);
+        // Agregar el userId al token
+        claims.put("userId", user.getUserId().toString());
+
+        return createToken(user.getUserId(), user.getUsername(), claims);
     }
+
 
     public <T> T getClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claimis = getAllClaims(token);
@@ -96,6 +106,17 @@ public class JwtService {
         return (username.equals(userDetails.getUsername()) && isTokenExpired(token));
     }
 
+    public UUID extractUserIdFromActivationToken(String token) {
+        return UUID.fromString(
+                Jwts.parser()
+                        .verifyWith(getKey())
+                        .build()
+                        .parseSignedClaims(token)
+                        .getPayload()
+                        .get("userId", String.class)
+        );
+    }
+
     public Date getExpiration(String token) {
         return getClaim(token, Claims::getExpiration);
     }
@@ -115,11 +136,14 @@ public class JwtService {
                 .compact();
     }
 
-    public String generateActivationToken(String username) {
+    public String generateActivationToken(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("purpose", "account_activation");
-        return createToken(username, claims);
+        claims.put("userId", user.getUserId().toString()); // Agregar el userId al token
+
+        return createToken(user.getUserId(), user.getUsername(), claims);
     }
+
 
     public boolean isActivationTokenValid(String token) {
         try {
@@ -131,22 +155,27 @@ public class JwtService {
         }
     }
 
-    public String createRefreshToken(String username, Map<String, Object> claims) {
+    public String createRefreshToken(UUID userId, String username, Map<String, Object> claims) {
+        claims.put("userId", userId.toString()); // Agregar userId al token
+
         return Jwts.builder()
                 .claims(claims)
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(expiration().getTime() + 1209600000))
+                .expiration(new Date(System.currentTimeMillis() + 1209600000)) // 14 días
                 .signWith(getKey())
                 .compact();
     }
 
-    public String generateRefreshToken(UserDetails userDetails) {
+
+    public String generateRefreshToken(User user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", userDetails.getAuthorities().stream()
+        claims.put("roles", user.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList()));
+        claims.put("userId", user.getUserId().toString()); // Agregar userId al token
 
-        return createRefreshToken(userDetails.getUsername(), claims);
+        return createRefreshToken(user.getUserId(), user.getUsername(), claims);
     }
+
 }

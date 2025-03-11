@@ -49,4 +49,21 @@ public class ProductService {
         Page<ProductDto> responsePage = productMapper.toDtoPage(productPage);
         return PageResponse.of(responsePage);
     }
+
+    public ProductDto createProduct(ProductDto productDto) {
+        Product product = productMapper.toEntity(productDto);
+        product.setId(UUID.randomUUID()); // Generar un ID único
+        product.setActive(true); // El producto se crea activo por defecto
+        product = productRepository.save(product);
+        return productMapper.toDto(product);
+    }
+
+    public ProductDto updateProduct(UUID id, ProductDto productDto) {
+        Product existingProduct = productRepository.findByIdAndIsActiveTrue(id)
+                .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id));
+
+        productMapper.updateProductFromDto(productDto, existingProduct); // Actualizar los datos del producto
+        existingProduct = productRepository.save(existingProduct);
+        return productMapper.toDto(existingProduct);
+    }
 }
