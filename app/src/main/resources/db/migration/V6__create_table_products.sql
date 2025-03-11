@@ -13,5 +13,5 @@ offer_percentage_discount DECIMAL DEFAULT 0,
 created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 is_active TINYINT(1) DEFAULT 1,
-FOREIGN KEY (category_id) REFERENCES categories(category_id)
+FOREIGN KEY (category_id) REFERENCES categories(id)
 )
