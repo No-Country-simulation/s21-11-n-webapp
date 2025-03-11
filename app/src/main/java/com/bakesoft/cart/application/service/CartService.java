@@ -12,7 +12,6 @@ import com.bakesoft.common.dto.PageResponse;
 import com.bakesoft.product.domain.model.Product;
 import com.bakesoft.product.domain.port.IProductRepository;
 import com.bakesoft.user.domain.model.User;
-import com.bakesoft.user.domain.port.IUserRepository;
 import com.bakesoft.user.infra.adapter.outbound.repository.UserRepositoryAdapter;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -38,20 +37,20 @@ public class CartService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        Cart cart = cartRepository.findByUserAndStatus(user, CartStatus.ACTIVE)
+        Cart cart = cartRepository.findByUserAndCartStatus(user, CartStatus.ACTIVE)
                 .orElseGet(() -> createNewCart(user));
 
         return cartMapper.toDto(cart);
     }
 
-    public PageResponse<CartDto> getUserCarts(Long userId, Pageable pageable) {
-        Page<Cart> cartPage = cartRepository.findByUserId(userId, pageable);
+    public PageResponse<CartDto> getUserCarts(UUID userId, Pageable pageable) {
+        Page<Cart> cartPage = cartRepository.findByUserUserId(userId, pageable);
         Page<CartDto> responsePage = cartMapper.toDtoPage(cartPage);
         return PageResponse.of(responsePage);
     }
 
     public PageResponse<CartDto> getCartsByStatus(CartStatus cartStatus, Pageable pageable) {
-        Page<Cart> cartPage = cartRepository.findByStatus(cartStatus, pageable);
+        Page<Cart> cartPage = cartRepository.findByCartStatus(cartStatus, pageable);
         Page<CartDto> responsePage = cartMapper.toDtoPage(cartPage);
         return PageResponse.of(responsePage);
     }
@@ -68,7 +67,7 @@ public class CartService {
             throw new IllegalArgumentException("Not enough stock available");
         }
 
-        Cart cart = cartRepository.findByUserAndStatus(user, CartStatus.ACTIVE)
+        Cart cart = cartRepository.findByUserAndCartStatus(user, CartStatus.ACTIVE)
                 .orElseGet(() -> createNewCart(user));
 
         Optional<CartItem> existingItem = cartItemRepository.findByCartAndProduct(cart, product);
@@ -95,7 +94,7 @@ public class CartService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        Cart cart = cartRepository.findByUserAndStatus(user, CartStatus.ACTIVE)
+        Cart cart = cartRepository.findByUserAndCartStatus(user, CartStatus.ACTIVE)
                 .orElseThrow(() -> new EntityNotFoundException("Active cart not found"));
 
         CartItem item = cartItemRepository.findById(itemId)
@@ -125,7 +124,7 @@ public class CartService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        Cart cart = cartRepository.findByUserAndStatus(user, CartStatus.ACTIVE)
+        Cart cart = cartRepository.findByUserAndCartStatus(user, CartStatus.ACTIVE)
                 .orElseThrow(() -> new EntityNotFoundException("Active cart not found"));
 
         CartItem item = cartItemRepository.findById(itemId)
@@ -144,7 +143,7 @@ public class CartService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        Cart cart = cartRepository.findByUserAndStatus(user, CartStatus.ACTIVE)
+        Cart cart = cartRepository.findByUserAndCartStatus(user, CartStatus.ACTIVE)
                 .orElseThrow(() -> new EntityNotFoundException("Active cart not found"));
 
         cart.getCartItems().clear();

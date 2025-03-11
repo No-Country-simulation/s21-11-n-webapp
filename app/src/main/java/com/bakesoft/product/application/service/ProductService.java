@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -24,7 +26,7 @@ public class ProductService {
         return PageResponse.of(responsePage);
     }
 
-    public ProductDto getProductById(Long id) {
+    public ProductDto getProductById(UUID id) {
         Product product = productRepository.findByIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id));
         return productMapper.toDto(product);

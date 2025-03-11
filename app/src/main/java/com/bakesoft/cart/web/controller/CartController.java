@@ -29,7 +29,7 @@ public class CartController {
 
     @GetMapping("/user/{userId}/all")
     public ResponseEntity<PageResponse<CartDto>> getUserCarts(
-            @PathVariable Long userId,
+            @PathVariable UUID userId,
             @PageableDefault(size = 10, sort = "createdAt") Pageable pageable) {
         return ResponseEntity.ok(cartService.getUserCarts(userId, pageable));
     }

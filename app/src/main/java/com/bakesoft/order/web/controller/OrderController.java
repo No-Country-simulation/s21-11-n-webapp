@@ -46,14 +46,14 @@ public class OrderController {
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long orderId) {
+    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable UUID orderId) {
         OrderResponseDto order = orderService.getOrderById(orderId);
         return ResponseEntity.ok(order);
     }
 
     @PatchMapping("/{orderId}/status")
     public ResponseEntity<OrderResponseDto> updateOrderStatus(
-            @PathVariable Long orderId,
+            @PathVariable UUID orderId,
             @RequestParam OrderStatus status) {
         OrderResponseDto updatedOrder = orderService.updateOrderStatus(orderId, status);
         return ResponseEntity.ok(updatedOrder);

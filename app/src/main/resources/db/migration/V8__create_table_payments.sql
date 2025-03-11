@@ -1,4 +1,4 @@
-CREATE TABLE payments (
+CREATE TABLE IF NOT EXISTS payments (
     id BINARY(16) PRIMARY KEY,
     order_id BINARY(16) NOT NULL,
     payment_method ENUM('mercado_pago', 'credit_card', 'paypal', 'bank_transfer') NOT NULL DEFAULT 'mercado_pago',

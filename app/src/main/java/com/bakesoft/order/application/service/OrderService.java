@@ -111,12 +111,12 @@ public class OrderService {
     }
 
     public PageResponse<OrderResponseDto> getOrdersByStatus(OrderStatus status, Pageable pageable) {
-        Page<Order> orderPage = orderRepository.findByStatus(status, pageable);
+        Page<Order> orderPage = orderRepository.findByOrderStatus(status, pageable);
         Page<OrderResponseDto> responsePage = orderMapper.toDtoPage(orderPage);
         return PageResponse.of(responsePage);
     }
 
-    public OrderResponseDto getOrderById(Long orderId) {
+    public OrderResponseDto getOrderById(UUID orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found"));
 
@@ -124,7 +124,7 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderResponseDto updateOrderStatus(Long orderId, OrderStatus newOrderStatus) {
+    public OrderResponseDto updateOrderStatus(UUID orderId, OrderStatus newOrderStatus) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found"));
 
