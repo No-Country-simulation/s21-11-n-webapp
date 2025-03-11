@@ -1,6 +1,6 @@
 CREATE TABLE payments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT NOT NULL,
+    id BINARY(16) PRIMARY KEY,
+    order_id BINARY(16) NOT NULL,
     payment_method ENUM('mercado_pago', 'credit_card', 'paypal', 'bank_transfer') NOT NULL DEFAULT 'mercado_pago',
     provider_transaction_id VARCHAR(255) NOT NULL UNIQUE,
     total_amount DECIMAL(10,2) NOT NULL,

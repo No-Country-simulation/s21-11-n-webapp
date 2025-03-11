@@ -2,7 +2,7 @@ package com.bakesoft.review.domain.model;
 
 import com.bakesoft.model.EntityClass;
 import com.bakesoft.product.domain.model.Product;
-import com.bakesoft.bakesoft.user.domain.model.User;
+import com.bakesoft.user.domain.model.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

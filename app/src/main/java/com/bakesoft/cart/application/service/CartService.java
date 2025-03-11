@@ -11,8 +11,9 @@ import com.bakesoft.cart.domain.port.ICartRepository;
 import com.bakesoft.common.dto.PageResponse;
 import com.bakesoft.product.domain.model.Product;
 import com.bakesoft.product.domain.port.IProductRepository;
-import com.bakesoft.bakesoft.user.domain.model.User;
-import com.bakesoft.bakesoft.user.domain.port.IUserRepository;
+import com.bakesoft.user.domain.model.User;
+import com.bakesoft.user.domain.port.IUserRepository;
+import com.bakesoft.user.infra.adapter.outbound.repository.UserRepositoryAdapter;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -29,10 +31,10 @@ public class CartService {
     private final ICartRepository cartRepository;
     private final ICartItemRepository cartItemRepository;
     private final IProductRepository productRepository;
-    private final IUserRepository userRepository;
+    private final UserRepositoryAdapter userRepository;
     private final CartMapper cartMapper;
 
-    public CartDto getActiveCartByUserId(Long userId) {
+    public CartDto getActiveCartByUserId(UUID userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
@@ -55,7 +57,7 @@ public class CartService {
     }
 
     @Transactional
-    public CartDto addItemToCart(Long userId, CartItemRequest request) {
+    public CartDto addItemToCart(UUID userId, CartItemRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
@@ -89,7 +91,7 @@ public class CartService {
     }
 
     @Transactional
-    public CartDto updateCartItem(Long userId, Long itemId, CartItemRequest request) {
+    public CartDto updateCartItem(UUID userId, Long itemId, CartItemRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
@@ -119,7 +121,7 @@ public class CartService {
     }
 
     @Transactional
-    public void removeItemFromCart(Long userId, Long itemId) {
+    public void removeItemFromCart(UUID userId, Long itemId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
@@ -138,7 +140,7 @@ public class CartService {
     }
 
     @Transactional
-    public void clearCart(Long userId) {
+    public void clearCart(UUID userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
@@ -150,7 +152,7 @@ public class CartService {
     }
 
     @Transactional
-    public Cart markCartAsExecuted(Long cartId) {
+    public Cart markCartAsExecuted(UUID cartId) {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new EntityNotFoundException("Cart not found"));
 

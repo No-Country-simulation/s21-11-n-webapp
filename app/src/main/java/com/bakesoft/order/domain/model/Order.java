@@ -4,7 +4,7 @@ import com.bakesoft.delivery.domain.model.Delivery;
 import com.bakesoft.model.EntityClass;
 import com.bakesoft.order.domain.enums.OrderStatus;
 import com.bakesoft.payment.domain.model.Payment;
-import com.bakesoft.bakesoft.user.domain.model.User;
+import com.bakesoft.user.domain.model.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;

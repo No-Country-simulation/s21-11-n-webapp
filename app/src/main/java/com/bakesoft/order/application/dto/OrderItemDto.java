@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
         import lombok.Data;
         import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderItemDto {
-    private Long id;
-    private Long productId;
+    private UUID id;
+    private UUID productId;
     private String productName;
     private String productImage;
     private Double priceAtPurchase;

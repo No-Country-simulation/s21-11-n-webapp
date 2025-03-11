@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @MappedSuperclass
 @Data
@@ -14,9 +15,9 @@ import java.time.LocalDateTime;
 public abstract class EntityClass {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
-    private Long id;
+    private UUID id;
     @Column(name = "created_at", updatable = false, nullable = false)
     private LocalDateTime createdAt;
     @Column(name = "updated_at")

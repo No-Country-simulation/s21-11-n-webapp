@@ -1,6 +1,6 @@
 CREATE TABLE deliveries (
     id BINARY(16) PRIMARY KEY,
-    order_id INT UNIQUE NOT NULL,
+    order_id BINARY(16) UNIQUE NOT NULL,
     delivery_status ENUM('pending', 'in_transit', 'delivered', 'returned', 'cancelled') NOT NULL DEFAULT 'pending',
     tracking_url VARCHAR(255) NULL,
     delivery_person_id INT NOT NULL,,

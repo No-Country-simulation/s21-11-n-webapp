@@ -2,7 +2,8 @@ package com.bakesoft.cart.domain.model;
 
 import com.bakesoft.cart.domain.enums.CartStatus;
 import com.bakesoft.model.EntityClass;
-import com.bakesoft.bakesoft.user.domain.model.User;
+
+import com.bakesoft.user.domain.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 

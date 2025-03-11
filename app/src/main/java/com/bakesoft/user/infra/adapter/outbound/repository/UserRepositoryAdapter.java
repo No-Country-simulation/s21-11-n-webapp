@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -25,6 +26,11 @@ public class UserRepositoryAdapter implements IUserRepository {
     @Override
     public void save(User newUser) {
         jpaRepository.save(newUser);
+    }
+
+    @Override
+    public Optional<User> findById(UUID userId) {
+        return jpaRepository.findById(userId);
     }
 }
 

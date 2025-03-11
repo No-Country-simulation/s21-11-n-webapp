@@ -16,14 +16,16 @@ import com.bakesoft.order.domain.enums.OrderStatus;
 
 import com.bakesoft.product.domain.model.Product;
 import com.bakesoft.product.domain.port.IProductRepository;
-import com.bakesoft.bakesoft.user.domain.model.User;
-import com.bakesoft.bakesoft.user.domain.port.IUserRepository;
+import com.bakesoft.user.domain.model.User;
+import com.bakesoft.user.domain.port.IUserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +41,7 @@ public class OrderService {
     private final OrderMapper orderMapper;
 
     @Transactional
-    public OrderResponseDto createOrderFromCart(Long userId, OrderRequestDto orderRequest) {
+    public OrderResponseDto createOrderFromCart(UUID userId, OrderRequestDto orderRequest) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
@@ -99,7 +101,7 @@ public class OrderService {
         return orderMapper.toDto(order);
     }
 
-    public PageResponse<OrderResponseDto> getUserOrders(Long userId, Pageable pageable) {
+    public PageResponse<OrderResponseDto> getUserOrders(UUID userId, Pageable pageable) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 

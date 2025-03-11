@@ -6,8 +6,12 @@ import com.bakesoft.common.mapper.EntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.stream.Collectors;
 
+/**
+ * Mapper for converting Cart entity to CartDto.
+ */
 @Component
 @RequiredArgsConstructor
 public class CartMapper implements EntityMapper<Cart, CartDto> {
@@ -22,12 +26,14 @@ public class CartMapper implements EntityMapper<Cart, CartDto> {
 
         return CartDto.builder()
                 .id(entity.getId())
-                .userId(entity.getUser() != null ? entity.getUser().getId() : null)
-                .items(entity.getCartItems().stream()
+                .userId(entity.getUser() != null ? entity.getUser().getUserId() : null)
+                .items(entity.getCartItems() != null
+                        ? entity.getCartItems().stream()
                         .map(cartItemMapper::toDto)
-                        .collect(Collectors.toList()))
+                        .collect(Collectors.toList())
+                        : Collections.emptyList())
                 .cartStatus(entity.getCartStatus())
-                .totalAmount(entity.calculateTotalAmount())
+                .totalAmount(entity.calculateTotalAmount()) // Considerar almacenar el total en BD si es costoso calcularlo
                 .createdAt(entity.getCreatedAt())
                 .updatedAt(entity.getUpdatedAt())
                 .build();
@@ -35,7 +41,6 @@ public class CartMapper implements EntityMapper<Cart, CartDto> {
 
     @Override
     public Cart toEntity(CartDto dto) {
-        // This method is not needed for this use case
         throw new UnsupportedOperationException("Cart entity creation from DTO is not supported");
     }
 }

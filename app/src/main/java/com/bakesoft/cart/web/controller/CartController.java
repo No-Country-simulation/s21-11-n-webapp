@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/carts")
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class CartController {
     private final CartService cartService;
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<CartDto> getUserActiveCart(@PathVariable Long userId) {
+    public ResponseEntity<CartDto> getUserActiveCart(@PathVariable UUID userId) {
         CartDto cart = cartService.getActiveCartByUserId(userId);
         return ResponseEntity.ok(cart);
     }
@@ -41,7 +43,7 @@ public class CartController {
 
     @PostMapping("/user/{userId}/items")
     public ResponseEntity<CartDto> addItemToCart(
-            @PathVariable Long userId,
+            @PathVariable UUID userId,
             @RequestBody CartItemRequest request) {
         CartDto updatedCart = cartService.addItemToCart(userId, request);
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedCart);
@@ -49,7 +51,7 @@ public class CartController {
 
     @PutMapping("/user/{userId}/items/{itemId}")
     public ResponseEntity<CartDto> updateCartItem(
-            @PathVariable Long userId,
+            @PathVariable UUID userId,
             @PathVariable Long itemId,
             @RequestBody CartItemRequest request) {
         CartDto updatedCart = cartService.updateCartItem(userId, itemId, request);
@@ -58,14 +60,14 @@ public class CartController {
 
     @DeleteMapping("/user/{userId}/items/{itemId}")
     public ResponseEntity<Void> removeItemFromCart(
-            @PathVariable Long userId,
+            @PathVariable UUID userId,
             @PathVariable Long itemId) {
         cartService.removeItemFromCart(userId, itemId);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/user/{userId}/clear")
-    public ResponseEntity<Void> clearCart(@PathVariable Long userId) {
+    public ResponseEntity<Void> clearCart(@PathVariable UUID userId) {
         cartService.clearCart(userId);
         return ResponseEntity.noContent().build();
     }

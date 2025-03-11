@@ -1,7 +1,7 @@
 package com.bakesoft.order.domain.port;
 import com.bakesoft.order.domain.enums.OrderStatus;
 import com.bakesoft.order.domain.model.Order;
-import com.bakesoft.bakesoft.user.domain.model.User;
+import com.bakesoft.user.domain.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

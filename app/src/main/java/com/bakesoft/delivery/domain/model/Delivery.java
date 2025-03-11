@@ -2,7 +2,7 @@ package com.bakesoft.delivery.domain.model;
 
 import com.bakesoft.model.EntityClass;
 import com.bakesoft.order.domain.model.Order;
-import com.bakesoft.bakesoft.user.domain.model.User;
+import com.bakesoft.user.domain.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 

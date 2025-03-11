@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/orders")
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class OrderController {
 
     @PostMapping("/user/{userId}")
     public ResponseEntity<OrderResponseDto> createOrder(
-            @PathVariable Long userId,
+            @PathVariable UUID userId,
             @RequestBody OrderRequestDto orderRequest) {
         OrderResponseDto newOrder = orderService.createOrderFromCart(userId, orderRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(newOrder);
@@ -29,7 +31,7 @@ public class OrderController {
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<PageResponse<OrderResponseDto>> getUserOrders(
-            @PathVariable Long userId,
+            @PathVariable UUID userId,
             @PageableDefault(size = 10, sort = "createdAt") Pageable pageable) {
         PageResponse<OrderResponseDto> orders = orderService.getUserOrders(userId, pageable);
         return ResponseEntity.ok(orders);
