@@ -2,7 +2,6 @@ package com.bakesoft.product.web.controller;
 
 import com.bakesoft.common.dto.PageResponse;
 import com.bakesoft.product.application.dto.CategoryDto;
-import com.bakesoft.product.application.dto.CategoryRequestDto;
 import com.bakesoft.product.application.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -33,7 +33,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Integer id) {
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable UUID id) {
         return ResponseEntity.ok(categoryService.getCategoryById(id));
     }
 
@@ -44,13 +44,13 @@ public class CategoryController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<CategoryDto> updateCategory(
-            @PathVariable Integer id,
+            @PathVariable UUID id,
             @Valid @RequestBody CategoryDto categoryDto) {
         return ResponseEntity.ok(categoryService.updateCategory(id, categoryDto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteCategory(@PathVariable UUID id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.noContent().build();
     }

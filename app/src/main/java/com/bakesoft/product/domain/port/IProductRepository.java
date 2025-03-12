@@ -14,7 +14,7 @@ import java.util.UUID;
 public interface IProductRepository extends JpaRepository<Product, UUID> {
     Page<Product> findByIsActiveTrue(Pageable pageable);
     Optional<Product> findByIdAndIsActiveTrue(UUID id);
-    Page<Product> findByCategoriesIdAndIsActiveTrue(Integer categoryId, Pageable pageable);
+    Page<Product> findByCategoriesIdAndIsActiveTrue(UUID categoryId, Pageable pageable);
     Page<Product> findByInOfferTrueAndIsActiveTrue(Pageable pageable);
     Page<Product> findByNameContainingIgnoreCaseAndIsActiveTrue(String name, Pageable pageable);
 }

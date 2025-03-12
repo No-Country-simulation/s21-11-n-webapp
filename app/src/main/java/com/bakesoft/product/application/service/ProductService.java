@@ -32,7 +32,7 @@ public class ProductService {
         return productMapper.toDto(product);
     }
 
-    public PageResponse<ProductDto> getProductsByCategory(Integer categoryId, Pageable pageable) {
+    public PageResponse<ProductDto> getProductsByCategory(UUID categoryId, Pageable pageable) {
         Page<Product> productPage = productRepository.findByCategoriesIdAndIsActiveTrue(categoryId, pageable);
         Page<ProductDto> responsePage = productMapper.toDtoPage(productPage);
         return PageResponse.of(responsePage);

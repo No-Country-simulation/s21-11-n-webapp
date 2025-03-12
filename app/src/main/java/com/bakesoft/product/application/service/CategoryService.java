@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,8 +35,8 @@ public class CategoryService {
         return PageResponse.of(dtoPage);
     }
 
-    public CategoryDto getCategoryById(Integer id) {
-        Category category = categoryRepository.findById(id)
+    public CategoryDto getCategoryById(UUID id) {
+        Category category = categoryRepository.findByIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + id));
         return categoryMapper.toDto(category);
     }
@@ -49,8 +50,8 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryDto updateCategory(Integer id, CategoryDto categoryDto) {
-        Category category = categoryRepository.findById(id)
+    public CategoryDto updateCategory(UUID id, CategoryDto categoryDto) {
+        Category category = categoryRepository.findByIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + id));
 
         // Update only non-null fields
@@ -72,8 +73,8 @@ public class CategoryService {
     }
 
     @Transactional
-    public void deleteCategory(Integer id) {
-        Category category = categoryRepository.findById(id)
+    public void deleteCategory(UUID id) {
+        Category category = categoryRepository.findByIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + id));
 
         // Soft delete by setting isActive to false
