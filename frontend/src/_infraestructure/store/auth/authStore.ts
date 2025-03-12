@@ -7,10 +7,11 @@ type AuthStore = {
   getRole: () => AuthRoles;
 };
 
-type UserEmail = {
-  email: string;
+type UserData = {
+  email: string | null;
+  userID: string | null;
   setEmail: (email: string) => void;
-  getEmail: () => string;
+  setUserID: (userID: string) => void;
 };
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
@@ -19,8 +20,9 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   getRole: () => get().userRole,
 }));
 
-export const useUserEmail = create<UserEmail>((set, get) => ({
-  email: "",
+export const useUserData = create<UserData>((set) => ({
+  email: null,
+  userID: null,
   setEmail: (email) => set({ email }),
-  getEmail: () => get().email,
+  setUserID: (userID) => set({ userID }),
 }));

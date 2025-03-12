@@ -4,11 +4,15 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import AppRouter from "@/routing/router";
 import { PrimeReactProvider } from "primereact/api";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PrimeReactProvider value={{ ripple: true }}>
-      <AppRouter />
-    </PrimeReactProvider>
+    <QueryClientProvider client={queryClient}>
+      <PrimeReactProvider value={{ ripple: true }}>
+        <AppRouter />
+      </PrimeReactProvider>
+    </QueryClientProvider>
   </StrictMode>
 );

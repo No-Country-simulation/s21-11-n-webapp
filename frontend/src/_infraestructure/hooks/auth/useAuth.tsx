@@ -4,13 +4,13 @@ import { AuthRoles } from "@/_domain/models/auth/RolesAuthModel";
 import { jwtDecode } from "jwt-decode";
 import {
   useAuthStore,
-  useUserEmail,
+  useUserData,
 } from "@/_infraestructure/store/auth/authStore";
 import { toast } from "sonner";
 
 export const useAuth = (): void => {
   const { setRole } = useAuthStore();
-  const { setEmail } = useUserEmail();
+  const { setEmail, setUserID } = useUserData();
   useEffect(() => {
     const validateToken = () => {
       const token = Cookies.get("token");
@@ -21,8 +21,9 @@ export const useAuth = (): void => {
       }
 
       try {
-        const { roles, sub } = jwtDecode<PayloadJwt>(token);
+        const { roles, sub, userId } = jwtDecode<PayloadJwt>(token);
         setRole(roles?.[0] ?? AuthRoles.ROLE_NULL);
+        setUserID(userId);
         setEmail(sub);
       } catch {
         toast.error("Token inválido o corrupto");
@@ -39,4 +40,5 @@ export interface PayloadJwt {
   sub: string;
   iat: number;
   exp: number;
+  userId: string;
 }
