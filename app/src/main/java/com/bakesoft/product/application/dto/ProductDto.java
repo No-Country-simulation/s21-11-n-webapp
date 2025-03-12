@@ -28,4 +28,3 @@ public class ProductDto {
     private Set<CategoryDto> categories;
     private LocalDateTime createdAt;
 }
-
