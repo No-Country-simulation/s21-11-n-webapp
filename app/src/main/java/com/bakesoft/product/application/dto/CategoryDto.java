@@ -16,6 +16,5 @@ public class CategoryDto {
     private String name;
     private String description;
     private String thumbnail;
-    private Boolean isActive = true;
 }
 
