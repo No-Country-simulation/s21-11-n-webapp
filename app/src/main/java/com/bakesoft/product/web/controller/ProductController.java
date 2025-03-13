@@ -32,7 +32,7 @@ public class ProductController {
 
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<PageResponse<ProductDto>> getProductsByCategory(
-            @PathVariable Integer categoryId,
+            @PathVariable UUID categoryId,
             @PageableDefault(size = 20, sort = "id") Pageable pageable) {
         return ResponseEntity.ok(productService.getProductsByCategory(categoryId, pageable));
     }
