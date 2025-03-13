@@ -27,13 +27,13 @@ public class ProductService {
     }
 
     public ProductDto getProductById(UUID id) {
-        Product product = productRepository.findByIdAndIsActiveTrue(id)
+        Product product = productRepository.findByProductIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id));
         return productMapper.toDto(product);
     }
 
     public PageResponse<ProductDto> getProductsByCategory(UUID categoryId, Pageable pageable) {
-        Page<Product> productPage = productRepository.findByCategoriesIdAndIsActiveTrue(categoryId, pageable);
+        Page<Product> productPage = productRepository.findByCategoriesCategoryIdAndIsActiveTrue(categoryId, pageable);
         Page<ProductDto> responsePage = productMapper.toDtoPage(productPage);
         return PageResponse.of(responsePage);
     }
@@ -52,14 +52,14 @@ public class ProductService {
 
     public ProductDto createProduct(ProductDto productDto) {
         Product product = productMapper.toEntity(productDto);
-        product.setId(UUID.randomUUID()); // Generar un ID único
+        product.setProductId(UUID.randomUUID()); // Generar un ID único
         product.setActive(true); // El producto se crea activo por defecto
         product = productRepository.save(product);
         return productMapper.toDto(product);
     }
 
     public ProductDto updateProduct(UUID id, ProductDto productDto) {
-        Product existingProduct = productRepository.findByIdAndIsActiveTrue(id)
+        Product existingProduct = productRepository.findByProductIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id));
 
         productMapper.updateProductFromDto(productDto, existingProduct); // Actualizar los datos del producto

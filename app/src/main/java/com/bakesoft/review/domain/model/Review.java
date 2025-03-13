@@ -3,11 +3,10 @@ package com.bakesoft.review.domain.model;
 import com.bakesoft.model.EntityClass;
 import com.bakesoft.product.domain.model.Product;
 import com.bakesoft.user.domain.model.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.UUID;
 
 @Entity
 @Data
@@ -15,9 +14,15 @@ import lombok.*;
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "reviews")
 public class Review extends EntityClass {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "review_id", updatable = false, nullable = false)
+    private UUID reviewId;
+
     private String content;
 
     @ManyToOne

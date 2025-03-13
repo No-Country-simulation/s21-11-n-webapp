@@ -51,13 +51,9 @@ public class OrderService {
             throw new IllegalArgumentException("Cannot create order from empty cart");
         }
 
-        // Create a new payment (simplified for this example)
+        // Create a new payment
         //Payment payment = new Payment();
         //payment = paymentRepository.save(payment);
-
-        // Create a new delivery (simplified for this example)
-        //Delivery delivery = new Delivery();
-        //delivery = deliveryRepository.save(delivery);
 
         // Create the order
         Order order = Order.builder()

@@ -9,6 +9,7 @@ import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -16,9 +17,15 @@ import java.util.Set;
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "carts")
 public class Cart extends EntityClass {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "cart_id", updatable = false, nullable = false)
+    private UUID cartId;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

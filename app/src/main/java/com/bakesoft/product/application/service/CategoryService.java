@@ -35,7 +35,7 @@ public class CategoryService {
     }
 
     public CategoryDto getCategoryById(UUID id) {
-        Category category = categoryRepository.findByIdAndIsActiveTrue(id)
+        Category category = categoryRepository.findByCategoryIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + id));
         return categoryMapper.toDto(category);
     }
@@ -43,6 +43,7 @@ public class CategoryService {
     @Transactional
     public CategoryDto createCategory(CategoryDto categoryDto) {
         Category category = categoryMapper.toEntity(categoryDto);
+        category.setCategoryId(UUID.randomUUID()); // Generar un ID único
         category.setIsActive(true); // Ensure new categories are active by default
         category = categoryRepository.save(category);
         return categoryMapper.toDto(category);
@@ -50,7 +51,7 @@ public class CategoryService {
 
     @Transactional
     public CategoryDto updateCategory(UUID id, CategoryDto categoryDto) {
-        Category category = categoryRepository.findByIdAndIsActiveTrue(id)
+        Category category = categoryRepository.findByCategoryIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + id));
 
         // Update only non-null fields
@@ -73,7 +74,7 @@ public class CategoryService {
 
     @Transactional
     public void deleteCategory(UUID id) {
-        Category category = categoryRepository.findByIdAndIsActiveTrue(id)
+        Category category = categoryRepository.findByCategoryIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new EntityNotFoundException("Category not found with id: " + id));
 
         // Soft delete by setting isActive to false

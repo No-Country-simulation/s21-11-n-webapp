@@ -17,7 +17,7 @@ public class CategoryMapper implements EntityMapper<Category, CategoryDto> {
         }
 
         return CategoryDto.builder()
-                .id(entity.getId())
+                .id(entity.getCategoryId())
                 .name(entity.getName())
                 .description(entity.getDescription())
                 .thumbnail(entity.getThumbnail())
@@ -31,7 +31,7 @@ public class CategoryMapper implements EntityMapper<Category, CategoryDto> {
         }
 
         Category category = new Category();
-        category.setId(dto.getId());
+        category.setCategoryId(dto.getId());
         category.setName(dto.getName());
         category.setDescription(dto.getDescription());
         category.setThumbnail(dto.getThumbnail());

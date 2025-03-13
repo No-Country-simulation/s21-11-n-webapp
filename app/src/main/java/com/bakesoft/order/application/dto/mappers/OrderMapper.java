@@ -21,7 +21,7 @@ public class OrderMapper implements EntityMapper<Order, OrderResponseDto> {
         }
 
         return OrderResponseDto.builder()
-                .id(entity.getId())
+                .id(entity.getOrderId())
                 .userId(entity.getUser() != null ? entity.getUser().getUserId() : null)
                 .items(entity.getOrderItems().stream()
                         .map(orderItemMapper::toDto)

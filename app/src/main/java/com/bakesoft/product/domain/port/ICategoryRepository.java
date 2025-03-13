@@ -15,5 +15,5 @@ public interface ICategoryRepository extends JpaRepository<Category, UUID> {
     List<Category> findByIsActiveTrue();
     Page<Category> findByIsActiveTrue(Pageable pageable);
     Page<Category> findByNameContainingIgnoreCase(String name, Pageable pageable);
-    Optional<Category> findByIdAndIsActiveTrue(UUID id);
+    Optional<Category> findByCategoryIdAndIsActiveTrue(UUID id);
 }

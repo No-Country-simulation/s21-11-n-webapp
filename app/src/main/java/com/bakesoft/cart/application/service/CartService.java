@@ -60,7 +60,7 @@ public class CartService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        Product product = productRepository.findByIdAndIsActiveTrue(request.getProductId())
+        Product product = productRepository.findByProductIdAndIsActiveTrue(request.getProductId())
                 .orElseThrow(() -> new EntityNotFoundException("Product not found or inactive"));
 
         if (product.getCurrentStock() < request.getQuantity()) {
@@ -100,7 +100,7 @@ public class CartService {
         CartItem item = cartItemRepository.findById(itemId)
                 .orElseThrow(() -> new EntityNotFoundException("Cart item not found"));
 
-        if (!item.getCart().getId().equals(cart.getId())) {
+        if (!item.getCart().getCartId().equals(cart.getCartId())) {
             throw new IllegalArgumentException("Item does not belong to user's cart");
         }
 
@@ -130,7 +130,7 @@ public class CartService {
         CartItem item = cartItemRepository.findById(itemId)
                 .orElseThrow(() -> new EntityNotFoundException("Cart item not found"));
 
-        if (!item.getCart().getId().equals(cart.getId())) {
+        if (!item.getCart().getCartId().equals(cart.getCartId())) {
             throw new IllegalArgumentException("Item does not belong to user's cart");
         }
 
