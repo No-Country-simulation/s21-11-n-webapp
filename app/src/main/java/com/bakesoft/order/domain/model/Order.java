@@ -42,16 +42,16 @@ public class Order extends EntityClass {
     private Set<OrderItem> orderItems = new HashSet<>();
 
     @OneToOne
-    @JoinColumn(name = "payment_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "payment_id", referencedColumnName = "payment_id", nullable = false)
     @JsonManagedReference
     @ToString.Exclude
     private Payment payment;
 
-    @OneToOne
-    @JoinColumn(name = "delivery_id", referencedColumnName = "id", nullable = false)
-    @JsonManagedReference
-    @ToString.Exclude
-    private Delivery delivery;
+    //@OneToOne
+    //@JoinColumn(name = "delivery_id", referencedColumnName = "delivery_id", nullable = false)
+    //@JsonManagedReference
+    //@ToString.Exclude
+    //private Delivery delivery;
 
     // Helper method to add a product with quantity
     public void addOrderItem(OrderItem orderItem) {
