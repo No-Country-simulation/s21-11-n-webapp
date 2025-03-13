@@ -18,6 +18,12 @@ const useMenuBarState = () => {
     },
   ];
 
+  const ProfileItem: MenuItem = {
+    label: "Perfil",
+    icon: <Icon icon="iconamoon:profile-circle-duotone" className="mr-1" />,
+    command: () => navigate("/perfil"),
+  };
+
   const adminItems: MenuItem[] = [
     {
       label: "Panel",
@@ -31,6 +37,7 @@ const useMenuBarState = () => {
       ),
       command: () => navigate("/panel"),
     },
+    ProfileItem,
   ];
 
   const userItems: MenuItem[] = [
@@ -46,6 +53,7 @@ const useMenuBarState = () => {
       ),
       command: () => navigate("/historial"),
     },
+    ProfileItem,
   ];
   return {
     adminMenuItems: [...baseItems, ...adminItems],

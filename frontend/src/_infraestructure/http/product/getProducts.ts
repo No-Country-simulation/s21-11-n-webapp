@@ -7,6 +7,6 @@ export const getAllProducts = async () => {
 
 export const addProduct = async (product: any) => {
   const { data } = await http.post("/products", product);
-  console.log(product)
+  console.log(data)
   return data;
 };
