@@ -1,21 +1,11 @@
 import { useCartStore } from '@/_infraestructure/store/cart/cartStore'
 import { CartCardComponent } from './CartCardComponent'
-import { CartCard } from '@/_domain/models/cart/CartCard';
 import { transformCostToString } from '@/_infraestructure/utils/history';
-
-const getTotalCartCost = (cartStore: CartCard[]) => {
-  let cost = 0;
-  cartStore.forEach(cartcard => {
-    const price = Number(cartcard.productCard.price.toFixed(2));
-    const quantity = cartcard.quantity;
-    cost = cost + (price * quantity);
-  });
-  return Number(cost.toFixed(2));
-}
+import { getTotalCartCost } from '@/_infraestructure/utils/cart/getTotalCartCost';
 
 export const CartPanel = () => {
   const { cartStore } = useCartStore();
-  
+
   return (
     <>
       <div>
