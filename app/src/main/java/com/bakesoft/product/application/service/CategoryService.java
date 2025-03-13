@@ -1,7 +1,6 @@
 package com.bakesoft.product.application.service;
 import com.bakesoft.common.dto.PageResponse;
 import com.bakesoft.product.application.dto.CategoryDto;
-import com.bakesoft.product.application.dto.CategoryRequestDto;
 import com.bakesoft.product.application.dto.mappers.CategoryMapper;
 import com.bakesoft.product.domain.model.Category;
 import com.bakesoft.product.domain.port.ICategoryRepository;
