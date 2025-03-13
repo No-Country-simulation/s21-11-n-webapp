@@ -29,7 +29,7 @@ public class ProductMapper implements EntityMapper<Product, ProductDto> {
         }
 
         return ProductDto.builder()
-                .id(entity.getId())
+                .id(entity.getProductId())
                 .name(entity.getName())
                 .coverPicture(entity.getCoverPicture())
                 .description(entity.getDescription())

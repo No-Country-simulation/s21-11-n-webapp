@@ -11,6 +11,7 @@ import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -18,9 +19,14 @@ import java.util.Set;
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "orders")
 public class Order extends EntityClass {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "order_id", updatable = false, nullable = false)
+    private UUID orderId;
 
     private Double totalAmount;
     private String deliveryAddress;

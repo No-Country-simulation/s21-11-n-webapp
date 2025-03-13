@@ -15,8 +15,8 @@ public class OrderItemMapper implements EntityMapper<OrderItem, OrderItemDto> {
         }
 
         return OrderItemDto.builder()
-                .id(entity.getId())
-                .productId(entity.getProduct().getId())
+                .id(entity.getOrderItemId())
+                .productId(entity.getProduct().getProductId())
                 .productName(entity.getProduct().getName())
                 .productImage(entity.getProduct().getCoverPicture())
                 .priceAtPurchase(entity.getPriceAtPurchase())

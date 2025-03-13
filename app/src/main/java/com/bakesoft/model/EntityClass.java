@@ -11,13 +11,8 @@ import java.util.UUID;
 @MappedSuperclass
 @Data
 @ToString
-@EqualsAndHashCode(of = "id")
 public abstract class EntityClass {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
     @Column(name = "created_at", updatable = false, nullable = false)
     private LocalDateTime createdAt;
     @Column(name = "updated_at")

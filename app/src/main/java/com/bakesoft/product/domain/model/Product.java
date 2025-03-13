@@ -4,8 +4,10 @@ import com.bakesoft.model.EntityClass;
 import com.bakesoft.review.domain.model.Review;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -13,9 +15,15 @@ import java.util.Set;
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "products")
 public class Product extends EntityClass {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "product_id", updatable = false, nullable = false)
+    private UUID productId;
+
     private String name;
     private String coverPicture;
     private String description;
