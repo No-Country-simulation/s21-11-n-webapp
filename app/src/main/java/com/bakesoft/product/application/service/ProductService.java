@@ -52,7 +52,6 @@ public class ProductService {
 
     public ProductDto createProduct(ProductDto productDto) {
         Product product = productMapper.toEntity(productDto);
-        product.setProductId(UUID.randomUUID()); // Generar un ID único
         product.setActive(true); // El producto se crea activo por defecto
         product = productRepository.save(product);
         return productMapper.toDto(product);
