@@ -29,10 +29,10 @@ const LogOutButton = () => {
   return (
     <>
       <Button
-        className="w-full"
+        // className="w-full"
         onClick={confirmLogout}
         label="Salir"
-        text
+        outlined
         icon={
           <Icon
             icon="solar:exit-bold-duotone"

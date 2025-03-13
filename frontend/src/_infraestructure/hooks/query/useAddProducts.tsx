@@ -5,23 +5,19 @@ import { AxiosError } from "axios";
 const useAddProduct = () => {
   const qc = useQueryClient();
 
-  const addProducts = useMutation({
+  const { mutateAsync, isPending, data, error } = useMutation({
     mutationKey: ["addProducts"],
     mutationFn: addProduct,
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["products"] });
     },
-    onError: () => {
-      console.log("error");
-    },
   });
 
   return {
-    createProduct: addProducts.mutate,
-    isCreating: addProducts.isPending,
-    createResponse: addProducts.data,
-    status: addProducts.status,
-    error: (addProducts.error as AxiosError)?.response?.data, // Tipo correcto
+    mutateAsync,
+    isPending,
+    data,
+    error: (error as AxiosError)?.response,
   };
 };
 

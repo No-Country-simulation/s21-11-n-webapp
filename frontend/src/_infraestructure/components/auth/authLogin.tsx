@@ -10,6 +10,7 @@ import { LoginAuthModel } from "@/_domain/models/auth/LoginAuthModel";
 import { useAuthLogin } from "@/_infraestructure/hooks/auth/useLogin";
 import { useCallback, useEffect } from "react";
 import FullScreenLoading from "../layout/FullScreenLoading";
+import { Password } from "primereact/password";
 
 interface AuthLoginProps {
   closeModal: () => void;
@@ -85,6 +86,8 @@ const AuthLogin = ({ closeModal }: AuthLoginProps) => {
                 <Icon icon="carbon:password" width="20" height="20" />
               </InputIcon>
               <InputText
+                // toggleMask
+                // feedback={false}
                 disabled={isLoading}
                 className="w-full"
                 type="password"
