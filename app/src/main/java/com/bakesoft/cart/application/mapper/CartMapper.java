@@ -25,7 +25,7 @@ public class CartMapper implements EntityMapper<Cart, CartDto> {
         }
 
         return CartDto.builder()
-                .id(entity.getId())
+                .id(entity.getCartId())
                 .userId(entity.getUser() != null ? entity.getUser().getUserId() : null)
                 .items(entity.getCartItems() != null
                         ? entity.getCartItems().stream()

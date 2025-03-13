@@ -15,8 +15,8 @@ public class CartItemMapper implements EntityMapper<CartItem, CartItemDto> {
         }
 
         return CartItemDto.builder()
-                .id(entity.getId())
-                .productId(entity.getProduct().getId())
+                .id(entity.getCartItemId())
+                .productId(entity.getProduct().getProductId())
                 .productName(entity.getProduct().getName())
                 .productImage(entity.getProduct().getCoverPicture())
                 .productPrice(entity.getProduct().getPrice())

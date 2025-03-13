@@ -15,7 +15,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "category_id", updatable = false, nullable = false)
     private UUID categoryId;
-
     private String name;
     private String description;
     private String thumbnail;
