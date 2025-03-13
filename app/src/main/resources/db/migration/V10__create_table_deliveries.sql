@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS deliveries (
-    id BINARY(16) PRIMARY KEY,
+    delivery_id BINARY(16) PRIMARY KEY,
     order_id BINARY(16) UNIQUE NOT NULL,
     user_id BINARY(16) UNIQUE NOT NULL,
     delivery_status ENUM('pending', 'in_transit', 'delivered', 'returned', 'cancelled') NOT NULL DEFAULT 'pending',

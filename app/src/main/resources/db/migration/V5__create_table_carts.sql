@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS carts (
-    id BINARY(16) NOT NULL PRIMARY KEY, -- UUID como clave primaria
+    cart_id BINARY(16) NOT NULL PRIMARY KEY, -- UUID como clave primaria
     user_id BINARY(16),                 -- UUID del usuario
     cart_status ENUM('ACTIVE', 'INACTIVE', 'PENDING') NOT NULL DEFAULT 'ACTIVE',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
